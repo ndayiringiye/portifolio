@@ -3,7 +3,7 @@ import Footer from "./Footer"
 const Home = () => {
   return (
     <div>
-    <div className='bg-blue-400/20 mt-10'>
+    <div className='bg-blue-400/20 mt-36'>
         <h1 className=' flex justify-end  uppercase font-serif font-bold text-blue-700 text-2xl mx-10'>Bio<span className='text-black uppercase'>Status</span></h1>
         <div className='flex justify-center w-11/12 mx-auto gap-10'>
             <div className=''>

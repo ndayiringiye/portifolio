@@ -4,8 +4,11 @@ import { Link, Outlet } from "react-router"
 const Head = () => {
  const[icons, setIcons] = useState(false)
   return (
-    <div>
-      <div>
+    <div className="relative">
+      <div className="fixed top-0  right-0 left-0 mb-48">
+
+    
+      <div >
         <h1 className='text-white font-serif uppercase border border-gray-50 font-bold text-3xl text-center py-3 items center w-full bg-blue-400'>portifolio</h1>
       </div>
       <div className="bg-blue-400">
@@ -34,6 +37,7 @@ const Head = () => {
           </div >
          
         </nav>
+      </div>
       </div>
       <div>
         <Outlet />
