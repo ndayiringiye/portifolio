@@ -2,6 +2,7 @@ import {BrowserRouter,   Routes, Route} from "react-router";
 import Head from './Component/Head'
 import Home from './Component/Home'
 import Contact from './Pages/Contact'
+import About from "./Pages/About";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path ="https://mail.google.com/mail/u/1/#inbox" element={<Contact />}/>
           <Route path ="https://www.x.com/" element={<Contact />}/>
 
+         <Route path="/about" element={<About />} />
 
 
 
