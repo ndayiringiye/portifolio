@@ -1,6 +1,7 @@
 [
     {
         "logo" :"about" ,
+        "m" : "me",
         "id": 1,
         "description" : "Hi, I’m ndayiringiye david, a passionate Full-Stack Developer with 1 years of experience building robust, scalable, and user-friendly applications. I specialize in both front-end and back-end development, leveraging the latest technologies to create seamless digital experiences."
         

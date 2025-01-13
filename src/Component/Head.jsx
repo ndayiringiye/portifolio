@@ -40,7 +40,6 @@ const Head = () => {
       </div>
       </div>
       <div>
-        <Outlet />
 
 
       </div>

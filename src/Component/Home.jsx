@@ -1,5 +1,6 @@
-import Footer from "./Footer"
 import { FaDownload } from "react-icons/fa6";
+import { motion } from "motion/react"
+
 const Home = () => {
   return (
     <div>
@@ -18,16 +19,18 @@ const Home = () => {
             <p>i experienced in fronted web development</p>
             <p>as <span className='font-semibold font-serif '>"Fronted web developer"</span></p>
             
-            <button className='bg-blue-400 py-o.5 px-2 text-center text-white font-bold shodw-mc rounded-md my-4 mx-20 font-serif'><p className="flex gap-1 py-1"> Download <FaDownload /></p> </button>
+            <motion.button 
+             whileHover={{ scale: 1.1 }}
+             whileTap={{ scale: 0.95 }}
+             onHoverStart={() => console.log('hover started!')}
+            className='bg-blue-400 py-o.5 px-2 text-center text-white font-bold shodw-md   rounded-md my-4 mx-20 font-serif'><p className="flex gap-1 py-1"> Download <FaDownload /></p> </motion.button>
            
             
-            
-             
+           
              
           </div>
           </div>
         </div>
-        <Footer />
       </div>
       )
 }
