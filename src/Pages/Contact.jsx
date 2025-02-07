@@ -30,7 +30,7 @@ const Contact = () => {
             <div className="grid grid-row-3 gap-2 mt-46  w-9 py-2 px-3">
 
               <Link to="/" className="bg-white p-2 text-center rounded-full text-xl hover:bg-black hover:text-white font-bold"><MdHome /></Link>
-              <Link to="https://mail.google.com/mail/u/1/#inbox" className="bg-white p-2 text-center rounded-full text-xl hover:bg-black hover:text-white font-bold"><TfiEmail /></Link>
+              <Link to="https://mail.google.com/mail/u/1/#inbox" target="_blank" className="bg-white p-2 text-center rounded-full text-xl hover:bg-black hover:text-white font-bold"><TfiEmail /></Link>
               <Link to="" className="bg-white p-2 text-center rounded-full text-xl hover:bg-black hover:text-white font-bold"><FaTwitter /></Link>
             </div>
             <motion.div 

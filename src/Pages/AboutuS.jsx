@@ -1,6 +1,8 @@
 import { useState } from "react"
 import abouts from "../managed/Abouts.json"
 import { FaQuestion } from "react-icons/fa";
+import ChildAbout from "../Component/ChildAbout";
+
 const AboutUs = () => {
   const [contents, setContents] = useState(abouts)
   console.log(contents)
@@ -11,20 +13,23 @@ const AboutUs = () => {
       </div>
       <div >
         {contents.map((content, index) => (
-          <div>
-            <div >
-              <div className=""></div>
-              <h1
-                className="text-center pt-8 uppercase text-3lx font-serif  "
-                key={index}>{content.logo} <span className="text-white">{content.m}</span></h1>
-              <div  ></div>
+          <div key={index}>
+            <div className="w-11/12 mx-auto">
+              <div className={index === 0 && "flex justify-center items-center" }>
+                <div className={index === 0 && "bg-yellow-400 h-2 w-[150px] " }></div>
+
+                <h1 className="flex  px-2 py-3 uppercase  font-bold text-2xl">
+                  <span>{content.logo}</span>
+                  <span className="text-white">{content.m}</span>
+                </h1>
+                <div className={index === 0 && "bg-pink-700 h-2 w-[150px] " }></div>
+              </div>
             </div>
 
 
-            <p>{content.describe}</p>
-            <h1>{content.title}</h1>
           </div>
         ))}
+            <ChildAbout />
       </div>
     </div>
   )
