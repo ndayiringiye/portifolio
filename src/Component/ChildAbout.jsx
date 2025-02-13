@@ -1,5 +1,6 @@
 import { useState } from "react";
 import contents from "../managed/Abouts.json";
+import Checklist from "./Checklist";
 
 const ChildAbout = () => {
   const [items, setItems] = useState(contents);
@@ -7,12 +8,17 @@ const ChildAbout = () => {
   console.log(items)
   return (
     <div>
-      <div  className="flex justify-center flex-row-reverse gap-10 w-8/12 mx-auto">
+      <div className="grid grid-cols-2 gap-x-10 w-11/12 mx-auto">
         {items && items.map((item, index) => (
-          <div key={index}>
-            
+          <div key={index} >
             <div>
-            <img src={item.image} alt="my identification"  />
+              {item.image && (
+                <img
+                  src={item.image}
+                  alt="my identification"
+                  className="w-[200] h-40 origin-center rotate-45 my-3"
+                />
+              )}
             </div>
             <div>
               <h1>{item.me}</h1>
@@ -21,7 +27,9 @@ const ChildAbout = () => {
             </div>
           </div>
         ))}
-
+         <div>
+           <Checklist />
+         </div>
       </div>
     </div>
   )
