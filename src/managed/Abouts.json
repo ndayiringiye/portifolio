@@ -22,17 +22,7 @@
         "name": "look skils i experienced"
     },
     {
-        "id": 5,
-        "git":"git",
-        "start": "html",
-        "design":"figma design",
-        "css": "css",
-        "js": "JavaScript",
-        "node": "node js",
-        "mongo": "mongoDb"
-    },
-    {
-       "id":6,
+       "id":5,
        "soft":"modern frameworks and libraries",
        "tail":"tailwind css",
        "react":"react js",
