@@ -8,7 +8,7 @@ const AboutUs = () => {
   console.log(contents)
   return (
     <div className="bg-blue-300 mt-24 pt-4">
-      <div className="flex justify-center text-3xl text-white absolute top-[85px]  left-2/4 ">
+      <div className="flex justify-center text-3xl text-white absolute top-[85px]  left-2/4 z-20 ">
         <FaQuestion className="border-2 border-black font-bold p-2 rounded-full bg-blue-400 h-10 w-10" />
       </div>
       <div >
