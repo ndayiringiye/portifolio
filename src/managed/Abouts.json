@@ -16,18 +16,6 @@
     {
         "describe": "I’m driven by a deep passion for problem-solving and creating intuitive solutions. I thrive in fast-paced environments and love collaborating with diverse teams to build innovative products that make a real difference. Whether it's optimizing existing systems or building something from the ground up, I’m always excited to face new challenges and grow as a developer.",
         "id": 3
-    },
-    {
-        "id": 4,
-        "name": "look skils i experienced"
-    },
-    {
-       "id":5,
-       "soft":"modern frameworks and libraries",
-       "tail":"tailwind css",
-       "react":"react js",
-       "express":"express js",
-       "dog":"mongoose",
-       "sl":"SQL"
     }
+  
 ]

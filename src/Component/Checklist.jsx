@@ -11,9 +11,9 @@ const Checklist = () => {
         <div>
             {items && items.map((item , index)=>(
               <div key={index}>
-                <div>
+                <div >
                     <h1 className=" text-2xl font-roboto font-bold text-black">{item.title}</h1>
-                    <p className="font-robot">{item.explain}</p>
+                    <p className="text-lg font-roboto font-semibold opacity-2 text-gray-700">{item.explain}</p>
                 </div>
                 </div>
           ))}

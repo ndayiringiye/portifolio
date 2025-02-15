@@ -8,7 +8,7 @@ const Abilities = () => {
         <div className="py-4">
             {items && items.map(item =>(
                 <div>
-                    <p>{item.describe}</p>
+                    <p className="text-lg font-roboto font-semibold opacity-2 text-gray-700">{item.describe}</p>
                 </div>
             ))}
         </div>

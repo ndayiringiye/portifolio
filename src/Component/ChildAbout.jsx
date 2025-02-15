@@ -18,7 +18,7 @@ const ChildAbout = () => {
                   <img
                     src={item.image}
                     alt="my identification"
-                    className="sm:w-full rotate-0 sm:h-70 lg:w-[200px] rounded-md lg:h-40 md:w-[300px] md:h-50 md:origin-center md:rotate-45 my-3  "
+                    className="sm:w-full rotate-0 sm:h-70 lg:w-[200px] rounded-md lg:h-40 md:w-[300px] md:h-50 md:origin-center md:rotate-45 mt-10  "
                   />
                 )}
               </div>
@@ -26,10 +26,10 @@ const ChildAbout = () => {
                 <h1 className="text-2xl font-roboto font-bold text-black">
                   {item.me}
                 </h1>
-                <p className={index >= 1 && index <= 26 ? "text-2xl font-roboto font-bold text-black" : ""}>
+                <p className="text-lg font-roboto font-semibold opacity-2 text-gray-700">
                   {item.description}
                 </p>
-                <p className="my-3">{item.sub}</p>
+                <p className="text-lg font-roboto font-semibold opacity-2 text-gray-700 my-2">{item.sub}</p>
               </div>
             </div>
           ))}

@@ -8,14 +8,14 @@ const AboutUs = () => {
   console.log(contents)
   return (
     <div className="bg-blue-300 mt-24 pt-4">
-      <div className="flex justify-center text-3xl text-white absolute top-[85px]  left-2/4 z-20 ">
-        <FaQuestion className="border-2 border-black font-bold p-2 rounded-full bg-blue-400 h-10 w-10" />
+      <div className="flex justify-center text-3xl text-white absolute top-[85px]  left-2/4  ">
+        <FaQuestion className="border-2 border-black font-bold p-2 rounded-full bg-blue-400 h-10 w-10 fixed z-10" />
       </div>
       <div >
         {contents.map((content, index) => (
           <div key={index}>
             <div className="w-11/12 mx-auto">
-              <div className={index === 0 && "flex justify-center items-center" }>
+              <div className={index === 0 && "flex justify-center items-center fixed z-10 left-0 right-0" }>
                 <div className={index === 0 && "bg-yellow-400 h-2 w-[150px] " }></div>
 
                 <h1 className="flex  px-2 py-3 uppercase  font-bold text-2xl">
