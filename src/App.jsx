@@ -1,27 +1,27 @@
-import { BrowserRouter, Routes, Route } from "react-router";
-import Head from './Component/Head'
-import Home from './Component/Home'
-import Contact from './Pages/Contact'
+import { Routes, Route } from "react-router";
+import Home from './Component/Home';
+import Contact from './Pages/Contact';
 import AboutUs from "./Pages/AboutuS";
 import Layout from "./Pages/Layout";
+import { useState } from "react";
+import { globalModelContext } from "./contents/GlobalModelContext";
 
 const App = () => {
-  return (
-    <div>
-      <BrowserRouter>
-        <Routes >
-          <Route element={<Layout />}>
+  const [models, setModels] = useState("light");
 
+  return (
+    <globalModelContext.Provider value={{ models, setModels }}>
+      <div className={models === "light" ? "light" : "dark"}>
+        <Routes>
+          <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/" element={<Contact />} />
             <Route path="/about" element={<AboutUs />} />
           </Route>
         </Routes>
+      </div>
+    </globalModelContext.Provider>
+  );
+};
 
-      </BrowserRouter>
-    </div>
-  )
-}
-
-export default App
+export default App;

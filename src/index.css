@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.light{
+    color: black;
+}
+
+.dark{
+    background-color: black;
+    color: whitesmoke;
+}

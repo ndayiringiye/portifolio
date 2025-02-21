@@ -4,7 +4,9 @@ const LastAbout = ({ git, start, fig, design, sc ,css, jav, js, back , node, bd,
         <div>
                     <div>
                         <div className="flex gap-4 my-4 items-center">
+                            <div>
                             <img src={keep} alt="github" className="w-16 h-16 rounded-full bg-white p-2 items-center"/>
+                            </div>
                             <p className=" font-roboto font-medium capitalize text-2xl">{git}</p>
                         </div>
                         <div className="flex items-center capitalize font-medium  gap-4 my-4 ">
