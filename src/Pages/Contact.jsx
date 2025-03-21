@@ -7,14 +7,11 @@ import { MdHome } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
 import { FaTwitter } from "react-icons/fa";
 import { Link } from "react-router";
-import Footer from "../Component/Footer";
 import { motion } from "motion/react"
 
 
-// import { Outlet } from "react-router";
 
 const Contact = () => {
-
   return (
     <div>
       <div className="bg-blue-300 mt-24">
@@ -26,19 +23,18 @@ const Contact = () => {
           <Link to="https://github.com/ndayiringiye" className="bg-white p-2 text-center rounded-full"><BsGithub /></Link>
         </div>
         <div >
-          <div className="grid grid-cols-3 gap-x-6 w-11/12 mx-auto py-10 shadow-md sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-3 gap-x-6 w-11/12 mx-auto py-10 iphone:grid-cols-1  shadow-md sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             <div className="grid grid-row-3 gap-2 mt-46  w-9 py-2 px-3">
-
               <Link to="/" className="bg-white p-2 text-center rounded-full text-xl hover:bg-black hover:text-white font-bold"><MdHome /></Link>
               <Link to="https://mail.google.com/mail/u/1/#inbox" target="_blank" className="bg-white p-2 text-center rounded-full text-xl hover:bg-black hover:text-white font-bold"><TfiEmail /></Link>
               <Link to="" className="bg-white p-2 text-center rounded-full text-xl hover:bg-black hover:text-white font-bold"><FaTwitter /></Link>
             </div>
-            <motion.div 
-             initial={{ scale: 0 }} animate={{ scale: 1 }}
+            <motion.div
+              initial={{ scale: 0 }} animate={{ scale: 1 }}
             >
               <h1 className="text-white font-semibold text-xl leading-5">Let's <span className="leading-5 text-xl text-black font-semibold">taik</span></h1>
               <p className="py-4 font-sans-serif">To request aquout or want to meet up for build projects, contact me directly or fill out form and i will get back to soon.</p>
-              <form >
+              <form className="">
                 <label htmlFor="name">Full Name</label><br />
                 <input className="py-1 outline-none px-3 rounded-md shadow-md" type="text" name="name" /><br />
                 <label htmlFor="email">Email</label><br />
@@ -46,16 +42,12 @@ const Contact = () => {
                 <label htmlFor="messsage" className=" ">Messsage</label><br />
                 <textarea name="message" id="message" placeholder="write your message here..." className="py-6 outline-none px-8 shadow-md rounded-md" /><br />
                 <button className="bg-blue-400 py-2 px-3 rounded-md shadow-md cursor-pointer font-bold text-black hover:text-white hover:bg-black">send message</button>
-     
-    
               </form>
-          
-
             </motion.div>
             <div>
-              <motion.img 
-              initial={{ scale: 0 }} animate={{ scale: 1 }}
-               src="public/images/Pasted_image_15-removebg-preview.png" alt="image" />
+              <motion.img
+                initial={{ scale: 0 }} animate={{ scale: 1 }}
+                src="public/images/Pasted_image_15-removebg-preview.png" alt="image" />
             </div>
           </div>
         </div>

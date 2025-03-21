@@ -10,3 +10,17 @@
     background-color: black;
     color: whitesmoke;
 }
+
+@keyframes bounce-smooth {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-bounce-smooth {
+    animation: bounce-smooth 1.5s infinite ease-in-out;
+  }
+  
