@@ -24,7 +24,7 @@ const IntroductionAbout = () => {
             i'am david developer
           </h1>
           <div>
-            <p className="text-lg font-medium font-roboto">
+            <p className="text-lg  font-medium font-roboto">
               {isExpanded ? par : par.slice(0, 200) + "..."}
             </p>
             <div className="my-5">

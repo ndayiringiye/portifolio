@@ -1,49 +1,50 @@
 import { useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
-import { Link, Outlet } from "react-router"
+import { Link } from "react-router"
 import { IoMdCloseCircle } from "react-icons/io";
+
 const Head = () => {
   const [icons, setIcons] = useState(false)
   return (
-    <div className="relative  z-10">
-      <div className="fixed top-0 right-0 left-0 mb-48">
-        <div>
-          <h1 className='text-white font-serif uppercase border border-gray-50 font-bold text-3xl text-center py-3 items center w-full bg-blue-400'>portifolio</h1>
-        </div>
+    <div className="relative z-10 ">
+      <div className="fixed top-0 right-0 left-0">
+        <h1 className="text-white font-serif uppercase border border-gray-50 font-bold text-3xl text-center py-3 bg-blue-400">
+          Portfolio
+        </h1>
         <div className="bg-blue-400">
-          <nav className="flex justify-between w-11/12 mx-auto bg-blue-400 px-4 py-3 text-center">
-            <div className='logo'>
-              <Link to="/" className="text-white font-bold uppercase  font-serif">Bio<span className="text-black font-bold ">Status</span></Link>
+          <nav className="flex justify-between w-11/12 mx-auto bg-blue-400 px-4 py-3">
+            <div className="logo">
+              <Link to="/" className="text-white font-bold uppercase font-serif">
+                Bio<span className="text-black font-bold">Status</span>
+              </Link>
             </div>
-            <div className="flex gap-8 text-bold font-serif uppercase hidden  sm:hidden md:flex">
-              <Link className="transition duration-3000 delay-5000 hover:text-white hover:underline underline-offset-2" to="/">home</Link>
-              <Link className="transition duration-3000 delay-5000 hover:text-white hover:underline underline-offset-2" to="/contact">contact</Link>
-              <Link className="transition duration-3000 delay-5000 hover:text-white hover:underline underline-offset-2" to="/about">a bout me</Link>
-              <Link className="transition duration-3000 delay-5000 hover:text-white hover:underline underline-offset-2" to="/project">project</Link>
+            <div className="hidden sm:flex gap-8 font-serif uppercase">
+              <Link className="hover:text-white hover:underline underline-offset-2" to="/">Home</Link>
+              <Link className="hover:text-white hover:underline underline-offset-2" to="/contact">Contact</Link>
+              <Link className="hover:text-white hover:underline underline-offset-2" to="/about">About Me</Link>
+              <Link className="hover:text-white hover:underline underline-offset-2" to="/project">Project</Link>
             </div>
-            <div className="grid md:hidden">
+            <div className="z-10 sm:hidden relative">
+              <IoMenuSharp onClick={() => setIcons(!icons)} className="text-3xl text-black cursor-pointer iphone:text-3xl ipad:text-5xl ipad:front-bold  ipad:px-2 flex sm:hidden" />
               {icons && (
-                <div className="grid grid-cols-1 gap-2 bg-blue-500 py-2 px-6 absolute  top-43 capitalize rounded-md shadow-md font-bold cursor-pointer  text-white">
-                  <div className="flex justify-end px-2 ">
-                    <IoMdCloseCircle onClick={() => setIcons("")} className="text-2xl" />
+                <div className="absolute right-0 top-10 bg-blue-400 w-40 py-2 rounded-md shadow-md text-white">
+                  <div className="flex justify-end px-2">
+                    <IoMdCloseCircle onClick={() => setIcons(false)} className="text-2xl cursor-pointer" />
                   </div>
-                  <Link className="transition duration-3000 delay-5000 hover:text-white hover:underline underline-offset-2" to="/">home</Link>
-                  <Link className="transition duration-3000 delay-5000 hover:text-white hover:underline underline-offset-2" to="/contact">contact</Link>
-                  <Link className="transition duration-3000 delay-5000 hover:text-white hover:underline underline-offset-2" to="/about">a bout me</Link>
-                  <Link className="transition duration-3000 delay-5000 hover:text-white hover:underline underline-offset-2" to="/project">project</Link>
+                  <div className="flex flex-col items-center gap-2 py-2 font-bold cursor-pointer">
+                    <Link className="hover:text-gray-200 hover:underline hover:underline-ofset-2" to="/" onClick={() => setIcons(false)}>Home</Link>
+                    <Link className="hover:text-gray-200 hover:underline hover:underline-ofset-2" to="/contact" onClick={() => setIcons(false)}>Contact</Link>
+                    <Link className="hover:text-gray-200 hover:underline hover:underline-ofset-2" to="/about" onClick={() => setIcons(false)}>About Me</Link>
+                    <Link className="hover:text-gray-200 hover:underline hover:underline-ofset-2" to="/project" onClick={() => setIcons(false)}>Project</Link>
+                  </div>
                 </div>
               )}
             </div>
-            <div className="flex md:hidden">
-              <IoMenuSharp onClick={() => setIcons(prev => !prev)} className="font-bold text-3xl text-black" />
-            </div >
           </nav>
         </div>
       </div>
-      <div>
-      </div>
     </div>
-  )
+  );
 }
 
 export default Head

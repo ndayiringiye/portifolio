@@ -8,7 +8,8 @@ export default {
     extend: {
       screens:{
         iphone:"280px",
-        ipad:"400px"
+        ipad:"400px",
+        fold:"260px"
       }
     },
   },

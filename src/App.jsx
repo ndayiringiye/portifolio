@@ -5,10 +5,10 @@ import AboutUs from "./Pages/AboutuS";
 import Layout from "./Pages/Layout";
 import { useState } from "react";
 import { globalModelContext } from "./contents/GlobalModelContext";
+import Projects from "./Pages/Projects";
 
 const App = () => {
   const [models, setModels] = useState("light");
-
   return (
     <globalModelContext.Provider value={{ models, setModels }}>
       <div className={models === "light" ? "light" : "dark"}>
@@ -17,6 +17,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<AboutUs />} />
+            <Route path="/project" element={<Projects />} />
+
           </Route>
         </Routes>
       </div>
