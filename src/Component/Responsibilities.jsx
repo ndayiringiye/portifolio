@@ -10,7 +10,7 @@ function Responsibilities() {
     return (
         <div className="py-3">
             <Title />
-            <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 iphone:grid-cols-1  gap-10 w-11/12 mx-auto border  p-4 border-blue-500 rounded-md ">
+            <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 iphone:grid-cols-1  gap-10 w-11/12 mx-auto ">
                 <div className="border-2 border-blue-400 rounded-lg p-4 shadow-lg transition-transform duration-300 hover:rotate-3">
                     <p className="text-lg font-medium font-roboto">
                         {isResized ? par : par.slice(0, 200) + " ..."}
