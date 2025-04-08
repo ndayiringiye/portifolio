@@ -24,7 +24,7 @@ const services = [
         description: "Efficient delivery services for digital tools, fashion, and construction.",
     },
     {
-        title: "Freelancing & Software Development",
+        title: "Software Development",
         images: [
             "src/images/issue.png",
             "src/images/solution.png",
@@ -36,16 +36,19 @@ const services = [
 
 export default function ProjectsPage() {
     return (
-        <div className="container mx-auto mt-24 p-6">
-            <h1 className="text-3xl font-bold text-center mb-6">Our Services</h1>
+        <div className="bg-blue-300">
+        <div className="container mx-auto mt-24 bg-blue-300 p-6">
+            <h1 className="text-3xl font-bold text-center mb-2">Our Services</h1>
             <div className="w-11/12 mx-auto">
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-3 gap-6 fold:w-full ">
                     {services.map((service, index) => (
                         <ServiceCard key={index} service={service} />
                     ))}
                 </div>
             </div>
         </div>
+        </div>
+
     );
 }
 

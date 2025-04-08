@@ -1,9 +1,21 @@
+import { useEffect, useState } from "react";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import Technology from "./Technology";
 import { FaBriefcase } from "react-icons/fa";
 import Communities from "./Communities";
 
+const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
+
 const Home = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleDownload = () => {
     const cvUrl = process.env.PUBLIC_URL + "/Blue_Simple_Professional_CV_Resume.pdf";
     const link = document.createElement("a");
@@ -13,16 +25,30 @@ const Home = () => {
     link.click();
     document.body.removeChild(link);
   };
-  return (
 
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-white">
+        <Spin
+          indicator={antIcon}
+          tip="Wait for moment"
+          size="large"
+        />
+      </div>
+    );
+  }
+
+  return (
     <div className='bg-[url("src/images/homebg.png")] mt-36 bg-no-repeat bg-cover iphone:bg-cover iphone:bg-no-repeat'>
       <div className="w-11/12 mx-auto flex justify-end py-4">
-        <button
-          onClick={handleDownload}
+        <a
+          href="/Blue_Simple_Professional_CV_Resume.pdf"
+          download="David_Ndayiringiye_CV.pdf"
           className="px-6 py-3 bg-blue-400 text-white font-bold rounded-lg shadow-md hover:bg-blue-500 transition duration-300"
         >
           Download CV
-        </button>
+        </a>
+
       </div>
       <div className="flex flex-col !items-center justify-center ">
         <motion.div
@@ -34,9 +60,7 @@ const Home = () => {
           <div className="flex justify-start items-center w-11/12  mx-auto gap-3 px-10">
             <p className="uppercase font-serif font-bold text-blue-700 text-2xl fold:hidden md:flex">
               da
-              <span className="uppercase font-serif font-bold text-black text-2xl">
-                vi
-              </span>
+              <span className="uppercase font-serif font-bold text-black text-2xl">vi</span>
               d
             </p>
             <p className="uppercase font-serif font-bold text-blue-700 text-2xl">
@@ -73,7 +97,7 @@ const Home = () => {
       <Technology />
       <Communities />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
