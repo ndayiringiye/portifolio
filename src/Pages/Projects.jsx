@@ -3,33 +3,30 @@ import { motion } from "framer-motion";
 import { Card, Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
+import cars from "../../public/images/cars(1).png";
+import clothes from "../../public/images/clothes.png";
+import iphone from "../../public/images/iphone.png";
+import computer from "../../public/images/computer.png";
+import deliver from "../../public/images/deliva.png";
+import cost from "../../public/images/const.png";
+import issue from "../../public/images/issue.png";
+import solution from "../../public/images/solution.png";
+import ui from "../../public/images/ui.png";
 
 const services = [
     {
         title: "E-commerce",
-        images: [
-            "src/images/cars(1).png",
-            "src/images/clothes.png",
-            "src/images/iphone.png",
-        ],
+        images: [cars, clothes, iphone],
         description: "Build modern e-commerce platforms with seamless user experience.",
     },
     {
         title: "Delivery Services",
-        images: [
-            "src/images/computer.png",
-            "src/images/deliva.png",
-            "src/images/const.png",
-        ],
+        images: [computer, deliver, cost],
         description: "Efficient delivery services for digital tools, fashion, and construction.",
     },
     {
         title: "Software Development",
-        images: [
-            "src/images/issue.png",
-            "src/images/solution.png",
-            "src/images/ui.png",
-        ],
+        images: [issue, solution, ui],
         description: "Innovative software solutions and web development fixes.",
     },
 ];
@@ -37,21 +34,20 @@ const services = [
 export default function ProjectsPage() {
     return (
         <div className="bg-blue-300">
-        <div className="container mx-auto mt-24 bg-blue-300 p-6">
-            <h1 className="text-3xl font-bold text-center mb-2">Our Services</h1>
-            <div className="w-11/12 mx-auto">
-                <div className="grid md:grid-cols-3 gap-6 fold:w-full ">
-                    {services.map((service, index) => (
-                        <ServiceCard key={index} service={service} />
-                    ))}
+            <div className="container mx-auto mt-24 bg-blue-300 p-6">
+                <h1 className="text-3xl font-bold text-center mb-2">Our Services</h1>
+                <div className="w-11/12 mx-auto">
+                    <div className="grid md:grid-cols-3 gap-6 fold:w-full ">
+                        {services.map((service, index) => (
+                            <ServiceCard key={index} service={service} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
 
     );
-}
-
+};
 function ServiceCard({ service }) {
     const [index, setIndex] = useState(0);
     const navigate = useNavigate();
@@ -66,7 +62,6 @@ function ServiceCard({ service }) {
 
     return (
         <div>
-
             <Card className="w-11/12  mx-auto mt-10 shadow-lg rounded-2xl" hoverable>
                 <h2 className="text-xl font-semibold mb-4 text-center">{service.title}</h2>
                 <div className="relative w-full h-48">
@@ -96,6 +91,5 @@ function ServiceCard({ service }) {
                 <Button type="primary" onClick={() => navigate("/contact")} className="w-full">Contact Us</Button>
             </Card>
         </div>
-
     );
 }

@@ -12,7 +12,8 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Mail, User, Send, CheckCircle } from "lucide-react";
 import { Toaster, toast } from "react-hot-toast";
-
+import paster from "../../public/images/Pasted_image_15-removebg-preview.png";
+import instagram from "../../public/images/image copy.png";
 
 
 const Contact = () => {
@@ -51,7 +52,7 @@ const Contact = () => {
       <div className="bg-blue-300 ipad:mt-32 sm:mt-24 mt-24">
         <div className="flex justify-end gap-4 py-6 px-4 shadow-md cursor-pointer">
           <Link to="https://www.facebook.com/" target="_blank" className="bg-white p-2 text-center rounded-full text-blue-600 "><FaFacebookF /></Link>
-          <Link to="https://www.instagram.com/" target="_blank" className="bg-white p-2 text-center rounded-full  "><img src="src/images/image copy.png" alt="instagram" className="w-4 h-4" /></Link>
+          <Link to="https://www.instagram.com/" target="_blank" className="bg-white p-2 text-center rounded-full  "><img src={instagram} alt="instagram" className="w-4 h-4" /></Link>
           <Link to="https://www.whatsapp.com/" target="_blank" className="bg-white p-2 text-center rounded-full text-green-400"><FaWhatsappSquare /></Link>
           <Link to="https://www.linkedin.com/" target="_blank" className="bg-white p-2 text-center rounded-full text-blue-800"><FaLinkedinIn /></Link>
           <Link to="https://github.com/ndayiringiye" target="_blank" className="bg-white p-2 text-center rounded-full"><BsGithub /></Link>
@@ -114,7 +115,7 @@ const Contact = () => {
             <div className="mt-14">
               <motion.img
                 initial={{ scale: 0 }} animate={{ scale: 1 }}
-                src="public/images/Pasted_image_15-removebg-preview.png" alt="image" />
+                src={paster} alt="image" />
             </div>
           </div>
         </div>

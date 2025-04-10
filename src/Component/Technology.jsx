@@ -1,16 +1,25 @@
-import React from "react";
+import figma from "../../public/images/figma.png";
+import html from "../../public/images/html.png";
+import css from "../../public/images/css.png";
+import express  from "../../public/images/express.png";
+import tailwind from "../../public/images/tailwind.png";
+import react from "../../public/images/react.png";
+import node from "../../public/images/node.png";
+import mongodb from  "../../public/images/mongodb.png";
+import mongoose from "../../public/images/mongose.png";
+import javascript from "../../public/images/javascript.png"
 
 const skills = [
-  { name: "Figma", img: "src/images/figma.png" },
-  { name: "HTML", img: "src/images/html.png" },
-  { name: "CSS", img: "src/images/css.png" },
-  { name: "JavaScript", img: "src/images/javascript.png" },
-  { name: "Tailwind CSS", img: "src/images/tailwind.png" },
-  { name: "React.js", img: "src/images/react.png" },
-  { name: "Node.js", img: "src/images/node.png" },
-  { name: "Express.js", img: "src/images/express.png" },
-  { name: "MongoDB", img: "src/images/mongodb.png" },
-  { name: "Mongoose", img: "src/images/mongose.png" },
+  { name: "Figma", img: figma },
+  { name: "HTML", img: html },
+  { name: "CSS", img: css },
+  { name: "JavaScript", img: javascript },
+  { name: "Tailwind CSS", img: tailwind },
+  { name: "React.js", img: react },
+  { name: "Node.js", img: node },
+  { name: "Express.js", img: express },
+  { name: "MongoDB", img: mongodb },
+  { name: "Mongoose", img: mongoose },
 ];
 
 const Skills = () => {

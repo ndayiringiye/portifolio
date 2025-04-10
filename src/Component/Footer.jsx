@@ -4,6 +4,7 @@ import { FaSquareWhatsapp } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { BsGithub } from "react-icons/bs";
 import { Link } from "react-router";
+import instagram from "../../public/images/image copy.png"
 const Footer = () => {
   return (
     <footer className="bg-black text-white">
@@ -40,7 +41,7 @@ const Footer = () => {
           </ul>
           <div className="flex space-x-5 mt-5">
           <Link to="https://www.facebook.com/" title="facebook" target="_blank" className="bg-white p-2 text-center rounded-full text-blue-600 "><FaFacebookF /></Link>
-          <Link to="https://www.instagram.com/"title="instagram"  target="_blank" className="bg-white p-2 text-center rounded-full  "><img src="src/images/image copy.png" alt="instagram" className="w-4 h-4" /></Link>
+          <Link to="https://www.instagram.com/"title="instagram"  target="_blank" className="bg-white p-2 text-center rounded-full  "><img src={instagram} alt="instagram" className="w-4 h-4" /></Link>
           <Link to="https://www.whatsapp.com/" title="whatsapp" target="_blank" className="bg-white p-2 text-center rounded-full text-green-400"><FaSquareWhatsapp /></Link>
           <Link to="https://www.linkedin.com/" title="linkedin" target="_blank" className="bg-white p-2 text-center rounded-full text-blue-800"><FaLinkedinIn /></Link>
           <Link to="https://github.com/ndayiringiye" title="Github" target="_blank" className="bg-white p-2 text-black text-center rounded-full"><BsGithub /></Link>

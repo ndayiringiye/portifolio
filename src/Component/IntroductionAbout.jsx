@@ -3,6 +3,8 @@ import { Link } from "react-router";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import Responsibilities from "./Responsibilities";
 import { motion } from "framer-motion";
+import me from "../../public/images/Pasted_image_19-removebg-preview.png";
+import hi from "../../public/images/Pasted_image_18-removebg-preview.png"
 
 const IntroductionAbout = () => {
   const par = "Hi, I’m Ndayiringiye david, a passionate Full-Stack Developer with 1 years of experience building robust, scalable, and user-friendly applications. I specialize in both front-end and back-end development, leveraging the latest technologies to create seamless digital experiences."
@@ -20,7 +22,7 @@ const IntroductionAbout = () => {
         >
           <h1 className="capitalize text-4xl text-black font-bold flex items-center py-6">
             hi,
-            <img className="w-10" src="/src/images/Pasted_image_18-removebg-preview.png" alt="hi" />
+            <img className="w-10" src={hi} alt="hi" />
             i'am david developer
           </h1>
           <div>
@@ -46,7 +48,7 @@ const IntroductionAbout = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 70, duration: 1 }}
         >
-          <img src="/src/images/Pasted_image_19-removebg-preview.png" alt="img" />
+          <img src={me} alt="img" />
         </motion.div>
       </div>
       <Responsibilities />

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Technology from "./Technology";
 import { FaBriefcase } from "react-icons/fa";
 import Communities from "./Communities";
+import background from "../../public/images/homebg.png"
 
 const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
 
@@ -15,16 +16,6 @@ const Home = () => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
-
-  const handleDownload = () => {
-    const cvUrl = process.env.PUBLIC_URL + "/Blue_Simple_Professional_CV_Resume.pdf";
-    const link = document.createElement("a");
-    link.href = cvUrl;
-    link.setAttribute("download", "David_Ndayiringiye_CV.pdf");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   if (loading) {
     return (
@@ -39,7 +30,10 @@ const Home = () => {
   }
 
   return (
-    <div className='bg-[url("src/images/homebg.png")] mt-36 bg-no-repeat bg-cover iphone:bg-cover iphone:bg-no-repeat'>
+    <div
+      className="mt-36 bg-no-repeat bg-cover iphone:bg-cover iphone:bg-no-repeat"
+      style={{ backgroundImage: `url(${background})` }}
+    >
       <div className="w-11/12 mx-auto flex justify-end py-4">
         <a
           href="/Blue_Simple_Professional_CV_Resume.pdf"
