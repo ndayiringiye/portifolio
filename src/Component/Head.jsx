@@ -16,8 +16,8 @@ const Head = () => {
         <div className="bg-blue-400">
           <nav className="flex justify-between w-11/12 mx-auto bg-blue-400 px-4 py-3">
             <div className="logo">
-              <Link to="/" className="text-white font-bold uppercase font-serif">
-                Bio<span className="text-black font-bold">Status</span>
+              <Link to="/" className="text-white font-bold capitalize text-3xl font-serif">
+                dav<span className="text-black font-bold">id</span>
               </Link>
             </div>
             <div className="hidden sm:flex gap-8 font-serif uppercase">
