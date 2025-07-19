@@ -8,8 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const Head = () => {
   const [icons, setIcons] = useState(false)
   return (
-    <div className="relative z-10 ">
-      <div className="fixed top-0 right-0 left-0">
+    <div className="relative z-50 ">
+      <div className="fixed top-0 right-0 left-0 z-50">
         <h1 className="text-white font-serif uppercase border border-gray-50 font-bold text-3xl text-center py-3 bg-blue-400">
           Portfolio
         </h1>
