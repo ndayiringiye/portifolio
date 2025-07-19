@@ -6,11 +6,13 @@ import Technology from "./Technology";
 import { FaBriefcase } from "react-icons/fa";
 import Communities from "./Communities";
 import background from "../../public/images/homebg.png"
-
+import profile from "../../public/images/profile.png";
+import coding from "../../public/videos/coding.mp4"
 const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
+  const [downloadCv, setDownloadCv] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -19,23 +21,42 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-white">
-        <Spin
-          indicator={antIcon}
-          tip="Wait for moment"
-          size="large"
-        />
+      <div className="h-screen flex flex-col items-center justify-center bg-white">
+        <Spin indicator={antIcon} size="large" />
+        <p className="mt-4 text-gray-600 font-medium text-lg">Wait for a moment...</p>
       </div>
     );
   }
+async function handleDownload() {
+  setDownloadCv(true);
+  try{
+    const response = await fetch("../../public/DavidNdayiringiyeResume_fullstack.pdf");
+    if(!response.ok){
+      throw new Error("netWork response was not ok");
+    }
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "DavidNdayiringiyeResume_fullstack.pdf";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+
+  }catch (error) {
+    console.log("Error downloading Cv", error);
+  }
+
+}
 
   return (
     <div
       className="mt-36 bg-no-repeat bg-cover iphone:bg-cover iphone:bg-no-repeat"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="w-11/12 mx-auto rounded-md ">
-        <div className="relative w-full h-screen overflow-hidden">
+      <div className="w-11/12 mx-auto  ">
+        <div className="relative w-full h-screen rounded-2xl overflow-hidden">
           <div className="absolute inset-0 z-0">
             <video
               autoPlay
@@ -44,22 +65,23 @@ const Home = () => {
               playsInline
               className="w-full h-full object-cover"
             >
-              <source src="src/videos/4389357-uhd_3840_2024_30fps (1).mp4" type="video/mp4" />
+              <source src={coding} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-black bg-opacity-40"></div>
           </div>
           <div className="relative z-10 flex flex-col h-full">
-            <div className="w-11/12 mx-auto flex justify-end py-4">
+            <div className="w-11/12 mx-auto flex justify-end py-2 md:py-4">
               <a
                 href="/Blue_Simple_Professional_CV_Resume.pdf"
                 download="David_Ndayiringiye_CV.pdf"
                 className="px-6 py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300 font-sans"
+                onClick={handleDownload}
               >
                 Download CV
               </a>
             </div>
-            <div className="flex flex-col md:flex-row items-center justify-center flex-grow px-4 md:px-10 lg:px-20">
+            <div className="flex flex-col md:flex-row items-center justify-center px-4 md:px-10 lg:px-20">
               <motion.div
                 initial={{ x: "-100vw", opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -92,10 +114,10 @@ const Home = () => {
                   </button>
                 </div>
               </motion.div>
-              <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0">
-                <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white">
+              <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0">
+                <div className="hidden ipad:block relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white">
                   <img
-                    src="src/images/793aa9391928a9cdade7be11d056d529-removebg-preview copy.png"
+                    src={profile}
                     alt="David Ndayiringiye"
                     className="w-full h-full object-cover"
                   />
