@@ -1,23 +1,51 @@
 import { useEffect, useState } from "react";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Button, Spin, message } from "antd";
+import { DownloadOutlined, LoadingOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import Technology from "./Technology";
-import { FaBriefcase } from "react-icons/fa";
 import Communities from "./Communities";
-import background from "../../public/images/homebg.png"
+import { FaBriefcase } from "react-icons/fa";
+import background from "../../public/images/homebg.png";
 import profile from "../../public/images/profile.png";
-import coding from "../../public/videos/coding.mp4"
+import coding from "../../public/videos/coding.mp4";
+
 const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
-  const [downloadCv, setDownloadCv] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      const response = await fetch("/DavidNdayiringiyeResume_fullstack.pdf");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "DavidNdayiringiyeResume_fullstack.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+
+      message.success("CV downloaded successfully!", 2);
+    } catch (error) {
+      console.error("Error downloading CV:", error);
+      message.error("Failed to download CV. Please try again.");
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -27,35 +55,13 @@ const Home = () => {
       </div>
     );
   }
-async function handleDownload() {
-  setDownloadCv(true);
-  try{
-    const response = await fetch("../../public/DavidNdayiringiyeResume_fullstack.pdf");
-    if(!response.ok){
-      throw new Error("netWork response was not ok");
-    }
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "DavidNdayiringiyeResume_fullstack.pdf";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    window.URL.revokeObjectURL(url);
-
-  }catch (error) {
-    console.log("Error downloading Cv", error);
-  }
-
-}
 
   return (
     <div
       className="mt-36 bg-no-repeat bg-cover iphone:bg-cover iphone:bg-no-repeat"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="w-11/12 mx-auto  ">
+      <div className="w-11/12 mx-auto">
         <div className="relative w-full h-screen rounded-2xl overflow-hidden">
           <div className="absolute inset-0 z-0">
             <video
@@ -71,15 +77,28 @@ async function handleDownload() {
             <div className="absolute inset-0 bg-black bg-opacity-40"></div>
           </div>
           <div className="relative z-10 flex flex-col h-full">
-            <div className="w-11/12 mx-auto flex justify-end py-2 md:py-4">
-              <a
-                href="/Blue_Simple_Professional_CV_Resume.pdf"
-                download="David_Ndayiringiye_CV.pdf"
-                className="px-6 py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300 font-sans"
+            <div className="w-11/12 mx-auto flex justify-end py-4 md:py-6">
+              <button
                 onClick={handleDownload}
+                disabled={downloading}
+                className={`flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-xl transition duration-300 text-white font-semibold text-base md:text-lg
+      ${downloading
+                    ? "bg-blue-300 cursor-not-allowed"
+                    : "bg-blue-500  hover:bg-blue-600 shadow-md hover:shadow-lg"
+                  }`}
               >
-                Download CV
-              </a>
+                {downloading ? (
+                  <>
+                    <LoadingOutlined className="animate-spin text-white text-lg" />
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <DownloadOutlined className="text-white text-lg" />
+                    Download CV
+                  </>
+                )}
+              </button>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-center px-4 md:px-10 lg:px-20">
               <motion.div
@@ -95,7 +114,7 @@ async function handleDownload() {
                 </div>
                 <div className="mb-6">
                   <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-200 font-['Montserrat'] tracking-tight">
-                    Ndayi<span className="text-blue-600">ringiye</span>
+                    Ndayi<span className="text-blue-500">ringiye</span>
                   </p>
                 </div>
                 <p className="text-gray-200 text-lg md:text-xl lg:text-2xl mb-6 font-['Open_Sans'] leading-relaxed">
@@ -124,25 +143,6 @@ async function handleDownload() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div>
-        </div>
-        <div className="flex flex-col items-center mt-28">
-          <div className=" fold:px-10 iphone:px-5 ">
-            <h1 className="font-bold text-3xl text-gray-800">Professional Experience</h1>
-          </div>
-          <div className="bg-blue-400 text-white px-8 py-5 rounded-lg shadow-lg mt-6 w-11/12 max-w-2xl">
-            <div className="flex justify-between items-center">
-              <p className="text-sm">May 2023 - Present</p>
-              <FaBriefcase className="text-xl" />
-            </div>
-            <h2 className="font-semibold text-lg mt-2">Software Engineer @ Alight Rwa</h2>
-            <p className="text-base mt-1">
-              Full-stack web developer for software applications using Laravel, React.js, and Tailwind CSS.
-              <br />
-              Mentor at Alight Coding.
-            </p>
           </div>
         </div>
       </div>
