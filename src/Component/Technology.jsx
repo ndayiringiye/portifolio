@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Progress, Carousel, Button } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-
-// Import skill images
 import figma from "../../public/images/figma.png";
 import html from "../../public/images/html.png";
 import css from "../../public/images/css.png";
@@ -19,6 +17,7 @@ import java from "../../public/images/java.png";
 import bg1 from "../../public/images/bg1.png";
 import bg2 from "../../public/images/bg2.png";
 import bg3 from "../../public/images/bg3.png";
+// import { Progress, Flex } from 'antd';
 
 const initialSkillLevels = [
   { name: "Figma", img: figma, level: 85 },
@@ -125,27 +124,27 @@ const Skills = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+      <div className="relative z-10 container mx-auto px-4-">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-blue-500">
           My Skills
         </h2>
         <div className="flex justify-center mb-12">
           <div className="inline-flex rounded-lg bg-gray-100 p-1">
             <button
               onClick={() => setActiveTab('frontend')}
-              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'frontend' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
+              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'frontend' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
             >
               Frontend
             </button>
             <button
               onClick={() => setActiveTab('backend')}
-              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'backend' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
+              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'backend' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
             >
               Backend
             </button>
             <button
               onClick={() => setActiveTab('tools')}
-              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'tools' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
+              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'tools' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
             >
               Tools
             </button>
@@ -170,6 +169,7 @@ const Skills = () => {
                 </div>
               </div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">{skill.name}</h3>
+              
               <div className="w-full">
                 <Progress
                   percent={animated ? skill.level : 0}
