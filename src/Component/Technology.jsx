@@ -17,7 +17,6 @@ import java from "../../public/images/java.png";
 import bg1 from "../../public/images/bg1.png";
 import bg2 from "../../public/images/bg2.png";
 import bg3 from "../../public/images/bg3.png";
-// import { Progress, Flex } from 'antd';
 
 const initialSkillLevels = [
   { name: "Figma", img: figma, level: 85 },
@@ -76,16 +75,14 @@ const Skills = () => {
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [animated]);
   const carouselRef = useRef(null);
 
-
   return (
     <div
-      className="w-full py-16 relative overflow-hidden"
+      className="w-full py-16 relative overflow-hidden mt-5"
       ref={skillsRef}
     >
       <div className="absolute inset-0 z-0 opacity-20">
@@ -110,25 +107,24 @@ const Skills = () => {
       <div className="absolute top-1/2 left-4 z-10 transform -translate-y-1/2">
         <Button
           type="text"
-          icon={<LeftOutlined className="text-white text-2xl" />}
+          icon={<LeftOutlined className="text-white text-2xl font-bold" />}
           onClick={() => carouselRef.current?.prev()}
-          className="bg-black bg-opacity-30 hover:bg-opacity-50"
+          className="bg-blue-500 "
         />
       </div>
       <div className="absolute top-1/2 right-4 z-10 transform -translate-y-1/2">
         <Button
           type="text"
-          icon={<RightOutlined className="text-white text-2xl" />}
+          icon={<RightOutlined className="text-white text-2xl front-bold" />}
           onClick={() => carouselRef.current?.next()}
-          className="bg-black bg-opacity-30 hover:bg-opacity-50"
+          className="bg-blue-500 "
         />
       </div>
-
       <div className="relative z-10 container mx-auto px-4-">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-blue-500">
-          My Skills
+          Skills & Technologies
         </h2>
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-12 w-11/12 mx-auto">
           <div className="inline-flex rounded-lg bg-gray-100 p-1">
             <button
               onClick={() => setActiveTab('frontend')}
@@ -150,41 +146,41 @@ const Skills = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
-          {filteredSkills[activeTab].map((skill, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center p-6 bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="relative group">
-                <img
-                  src={skill.img}
-                  alt={skill.name}
-                  className="w-20 h-20 object-contain mb-4 transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="bg-black bg-opacity-70 text-white text-sm px-2 py-1 rounded">
-                    {skill.level}%
-                  </span>
+        <div className='w-11/12 mx-auto'>
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 ">
+            {filteredSkills[activeTab].map((skill, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center p-6 bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="relative group">
+                  <img
+                    src={skill.img}
+                    alt={skill.name}
+                    className="w-20 h-20 object-contain mb-4 transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="bg-black bg-opacity-70 text-white text-sm px-2 py-1 rounded">
+                      {skill.level}%
+                    </span>
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">{skill.name}</h3>
+                <div className="w-full">
+                  <Progress
+                    percent={animated ? skill.level : 0}
+                    strokeColor={skill.level > 80 ? twoColors : conicColors}
+                    strokeWidth={10}
+                    showInfo={false}
+                    className="skill-progress"
+                  />
                 </div>
               </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">{skill.name}</h3>
-              
-              <div className="w-full">
-                <Progress
-                  percent={animated ? skill.level : 0}
-                  strokeColor={skill.level > 80 ? twoColors : conicColors}
-                  strokeWidth={10}
-                  showInfo={false}
-                  className="skill-progress"
-                />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default Skills;

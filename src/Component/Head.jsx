@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
-import { Link } from "react-router"
+import { Link } from "react-router-dom";
 import { IoMdCloseCircle } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion"; 
 

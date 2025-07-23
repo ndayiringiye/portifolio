@@ -6,15 +6,13 @@ import { BsGithub } from "react-icons/bs";
 import { MdHome } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
 import { FaTwitter } from "react-icons/fa";
-import { Link } from "react-router";
-import { motion } from "motion/react"
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Mail, User, Send, CheckCircle } from "lucide-react";
 import { Toaster, toast } from "react-hot-toast";
 import paster from "../../public/images/Pasted_image_15-removebg-preview.png";
 import instagram from "../../public/images/image copy.png";
-
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
