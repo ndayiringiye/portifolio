@@ -3,7 +3,7 @@ import { FaFacebookF } from "react-icons/fa6";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { BsGithub } from "react-icons/bs";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import instagram from "../../public/images/image copy.png"
 const Footer = () => {
   return (
@@ -14,7 +14,7 @@ const Footer = () => {
             Bio<span className="text-blue-400">Status</span>
           </h1>
           <p className="mt-4 text-gray-400 leading-relaxed">
-            I am a **Full-Stack Developer** specializing in the **MEN stack (MongoDB, Express, Node.js, React.js)**.
+            I am a **Full-Stack Developer** specializing in the **MEN stack (MongoDB, Express, Node.js
             Passionate about building scalable applications and solving real-world problems with technology.
           </p>
         </div>

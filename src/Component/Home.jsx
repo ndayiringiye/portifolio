@@ -8,6 +8,7 @@ import { FaBriefcase } from "react-icons/fa";
 import background from "../../public/images/homebg.png";
 import profile from "../../public/images/profile.png";
 import coding from "../../public/videos/coding.mp4";
+import AboutUs from "../Pages/AboutuS";
 
 const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
 
@@ -107,7 +108,7 @@ const Home = () => {
                     Ndayi<span className="text-blue-500">ringiye</span>
                   </p>
                 </div>
-                <p className=" mx-auto text-gray-800 text-lg md:text-xl lg:text-2xl mb-6 font-['Open_Sans'] leading-relaxed">
+                <p className="w-11/12 mx-auto text-gray-800 text-lg md:text-xl lg:text-2xl mb-6 font-['Open_Sans'] leading-relaxed">
                   I am a Full Stack Web Developer with over 2.5 years of hands-on experience in building
                   and deploying responsive applications. My expertise with the MERN stack, along with
                   proficiency in Java and Python, allows me to effectively address challenges. I practice
@@ -118,12 +119,12 @@ const Home = () => {
                   <button className=" px-3 sm:px-6 py-3 bg-blue-400 text-gray-100 font-bold rounded-lg hover:bg-gray-100 hover:text-blue-500 transition duration-300 shadow-md">
                     View Projects
                   </button>
-                  <button className="px-6 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-blue-400 transition duration-300">
+                  <button className="px-6 py-3 border-2 border-white text-blue-400 bg-white font-bold rounded-lg hover:bg-white hover:text-blue-400 transition duration-300">
                     Contact Me
                   </button>
                 </div>
               </motion.div>
-              <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0 ">
+              <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-4 md:mt-0 animate-slow-bounce">
                 <div className="hidden ipad:block relative w-48 h-48 md:w-64 md:h-64 lg:w-80 border-4 border-blue-400   lg:h-80 rounded-full overflow-hidden ">
                   <img
                     src={profile}
@@ -137,6 +138,7 @@ const Home = () => {
         </div>
       </div>
       <Technology />
+      <AboutUs />
       <Communities />
     </div>
   );

@@ -1,48 +1,49 @@
-import { useContext, useState } from "react";
-import abouts from "../managed/Abouts.json";
-import { FaQuestion } from "react-icons/fa";
-import IntroductionAbout from "../Component/IntroductionAbout";
+import React, { useState, useContext } from "react";
 import { globalModelContext } from "../contents/GlobalModelContext";
-import { FaRegMoon } from "react-icons/fa";
-import { TiStarburstOutline } from "react-icons/ti";
+import { div } from "framer-motion/client";
+import { FcBusinessman } from "react-icons/fc";
+import { FaUserGraduate } from "react-icons/fa";
+import { IoSettingsSharp } from "react-icons/io5";
+import { IoLocationSharp } from "react-icons/io5";
+import { TbTimezone } from "react-icons/tb";
+import profile from "../../public/images/profile.png"
+import IntroductionAbout from "../Component/IntroductionAbout";
+import { motion } from "framer-motion";
 
 const AboutUs = () => {
-  const [contents, setContents] = useState(abouts);
-  console.log(contents);
   const { models, setModels } = useContext(globalModelContext);
-
   return (
-    <div className={models === "light" ? "light" : "dark"}>
-      <div className="bg-blue-300 mt-24 pt-4">
-        <div className="flex justify-center text-3xl text-white absolute top-[85px] left-2/4 ">
-          <FaQuestion className="border-2 border-black font-bold p-2 rounded-full bg-blue-400 h-10 w-10 fixed z-10 " />
-        </div>
-        <div>
-          {contents.map((content, index) => (
-            <div key={index}>
-              <div className="w-11/12 mx-auto">
-                <div className={index === 0 ? "flex justify-center items-center fixed z-10 left-0 right-0" : ""}>
-                  <div className={index === 0 ? "bg-yellow-400 h-2 w-[150px]" : ""}></div>
-                  <h1 className="flex px-2 py-3 uppercase font-bold text-2xl">
-                    <span>{content.logo}</span>
-                    <span className="text-white">{content.m}</span>
-                  </h1>
-                  <div className={index === 0 ? "bg-pink-700 h-2 w-[150px]" : ""}></div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-end mx-20">
-          <button
-            onClick={() => setModels(models === "light" ? "dark" : "light")}
-            className="border p-2 "
-          >
-            {models === "light" ? <FaRegMoon className="tex-black font-bold text-lg" /> : <TiStarburstOutline className="tex-blue-600 font-bold text-lg" />}
-          </button>
-        </div>
-        <IntroductionAbout />
+    <div>
+    <div className="flex flex-col py-4 px-6 bg-blue-400 w-48 gap-6">
+      <div className="flex gap-2 capitalize font-bold text-xl">
+        <span><FcBusinessman  className="text-gray-800"/></span>
+        <h1>about <span className="text-white">me</span> </h1>
       </div>
+      <div></div>
+      <div className="flex gap-2 capitalize font-bold text-xl">
+        <span><FaUserGraduate className="text-gray-800" /></span>
+        <h1 className="text-white">education</h1>
+      </div>
+      <div></div>
+      <div className="flex gap-2 capitalize font-bold text-xl">
+        <span><IoSettingsSharp className="text-gray-800"/></span>
+        <h1 className="text-white">services</h1>
+      </div>                     
+      <div></div>
+      <div className="flex gap-2 capitalize font-bold text-xl">
+        <span><IoLocationSharp  className="text-gray-800"/></span>
+        <h1 className="text-white">location</h1>
+      </div>
+      <div></div>
+      <div className="flex gap-2 capitalize font-bold text-xl">
+        <span><TbTimezone  className="text-gray-800"/></span>
+        <h1 className="text-white">time zone</h1>
+      </div>
+      <div className="flex justify-end align-end ">
+        <img src={profile} alt="profile" className="w-full h-full object-fit-cover border-3 border-gray-100" />
+      </div>
+    </div>
+    <IntroductionAbout />
     </div>
   );
 };

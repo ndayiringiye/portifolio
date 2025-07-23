@@ -7,9 +7,12 @@ export default {
   theme: {
     extend: {
       screens: {
-        fold: "260px",     
-        iphone: "280px",   
-        ipad: "400px"      
+        fold: "260px",
+        iphone: "280px", 
+        ipad: "400px"
+      },
+      animation: {
+        'slow-bounce': 'bounce 3s infinite',
       }
     },
   },
