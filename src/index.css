@@ -23,4 +23,24 @@
   .animate-bounce-smooth {
     animation: bounce-smooth 1.5s infinite ease-in-out;
   }
-  
+.custom-carousel-dots {
+  position: relative;
+  bottom: -20px; 
+  display: flex !important;
+  justify-content: center;
+  gap: 12px;
+}
+
+.custom-carousel-dots li button {
+  background-color: #3b82f6 !important; 
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.custom-carousel-dots li.slick-active button {
+  opacity: 1;
+  transform: scale(1.3);
+}

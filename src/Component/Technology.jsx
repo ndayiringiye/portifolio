@@ -82,13 +82,13 @@ const Skills = () => {
 
   return (
     <div
-      className="w-full py-16 relative overflow-hidden mt-5"
+      className="w-11/12 mx-auto py-16 px-4 relative overflow-hidden mt-5"
       ref={skillsRef}
     >
       <div className="absolute inset-0 z-0 opacity-20">
         <Carousel
           autoplay
-          dots={false}
+          dots={{ className: 'custom-carousel-dots' }}
           effect="fade"
           ref={carouselRef}
         >
@@ -102,23 +102,6 @@ const Skills = () => {
             </div>
           ))}
         </Carousel>
-      </div>
-
-      <div className="absolute top-1/2 left-4 z-10 transform -translate-y-1/2">
-        <Button
-          type="text"
-          icon={<LeftOutlined className="text-white text-2xl font-bold" />}
-          onClick={() => carouselRef.current?.prev()}
-          className="bg-blue-500 "
-        />
-      </div>
-      <div className="absolute top-1/2 right-4 z-10 transform -translate-y-1/2">
-        <Button
-          type="text"
-          icon={<RightOutlined className="text-white text-2xl front-bold" />}
-          onClick={() => carouselRef.current?.next()}
-          className="bg-blue-500 "
-        />
       </div>
       <div className="relative z-10 container mx-auto px-4-">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-blue-500">
@@ -146,7 +129,7 @@ const Skills = () => {
             </button>
           </div>
         </div>
-        <div className='w-11/12 mx-auto'>
+        <div className=''>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 ">
             {filteredSkills[activeTab].map((skill, index) => (
               <div

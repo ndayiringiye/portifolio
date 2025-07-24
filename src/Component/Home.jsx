@@ -96,9 +96,9 @@ const Home = () => {
                 initial={{ x: "-100vw", opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 70, duration: 1 }}
-                className="w-full md:w-1/2 text-center md:text-left"
+                className="w-11/12 mx-auto md:w-1/2 md:mx-auto px-4 text-center md:text-left"
               >
-                <div className="flex flex-col md:flex-row justify-start items-center gap-3 mb-4">
+                <div className="flex flex-col md:flex-row justify-start items-center gap-2 mb-4">
                   <p className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-400 font-['Montserrat'] tracking-wide">
                     👋 Hi, I'm <span className="text-gray-800">David</span>
                   </p>
@@ -108,14 +108,14 @@ const Home = () => {
                     Ndayi<span className="text-blue-500">ringiye</span>
                   </p>
                 </div>
-                <p className="w-11/12 mx-auto text-gray-800 text-lg md:text-xl lg:text-2xl mb-6 font-['Open_Sans'] leading-relaxed">
+                <p className=" text-gray-800 text-lg md:text-xl lg:text-2xl mb-6 font-['Open_Sans'] leading-relaxed">
                   I am a Full Stack Web Developer with over 2.5 years of hands-on experience in building
                   and deploying responsive applications. My expertise with the MERN stack, along with
                   proficiency in Java and Python, allows me to effectively address challenges. I practice
                   clean UI/UX design and enjoy collaborating on innovative projects, particularly in
                   blockchain technology. I'm passionate about meaningful community contribution.
                 </p>
-                <div className="flex gap-4 mt-8 w-11/12 mx-auto ">
+                <div className="flex gap-4 mt-8">
                   <button className=" px-3 sm:px-6 py-3 bg-blue-400 text-gray-100 font-bold rounded-lg hover:bg-gray-100 hover:text-blue-500 transition duration-300 shadow-md">
                     View Projects
                   </button>
