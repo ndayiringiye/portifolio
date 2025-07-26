@@ -1,169 +1,173 @@
-import { useState, useEffect, useRef } from 'react';
-import { Progress, Carousel, Button } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import figma from "../../public/images/figma.png";
-import html from "../../public/images/html.png";
-import css from "../../public/images/css.png";
-import express from "../../public/images/express.png";
-import tailwind from "../../public/images/tailwind.png";
-import react from "../../public/images/react.png";
-import node from "../../public/images/node.png";
-import mongodb from "../../public/images/mongodb.png";
-import mongoose from "../../public/images/mongose.png";
-import javascript from "../../public/images/javascript.png";
-import git from "../../public/images/git.png";
-import java from "../../public/images/java.png";
+"use client"
 
-import bg1 from "../../public/images/bg1.png";
-import bg2 from "../../public/images/bg2.png";
-import bg3 from "../../public/images/bg3.png";
-
-const initialSkillLevels = [
-  { name: "Figma", img: figma, level: 85 },
-  { name: "HTML", img: html, level: 95 },
-  { name: "CSS", img: css, level: 90 },
-  { name: "JavaScript", img: javascript, level: 88 },
-  { name: "Tailwind CSS", img: tailwind, level: 92 },
-  { name: "React.js", img: react, level: 90 },
-  { name: "Node.js", img: node, level: 85 },
-  { name: "Express.js", img: express, level: 80 },
-  { name: "MongoDB", img: mongodb, level: 75 },
-  { name: "Mongoose", img: mongoose, level: 70 },
-  { name: "Git", img: git, level: 80 },
-  { name: "Java", img: java, level: 65 },
-];
-
-const initialBackgroundImages = [bg1, bg2, bg3];
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
+import { Code, Server, Palette, Database } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 
 const Skills = () => {
-  const [activeTab, setActiveTab] = useState('frontend');
-  const [skillLevels, setSkillLevels] = useState(initialSkillLevels);
-  const [backgroundImages, setBackgroundImages] = useState(initialBackgroundImages);
-  const [visibleSkills, setVisibleSkills] = useState(skillLevels.slice(0, 5));
-  const skillsRef = useRef(null);
+  const [animated, setAnimated] = useState(false)
+  const [activeCategory, setActiveCategory] = useState("frontend")
 
-  const [animated, setAnimated] = useState(false);
-
-  const filteredSkills = {
-    frontend: skillLevels.filter(skill =>
-      ['Figma', 'HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'React.js'].includes(skill.name)
-    ),
-    backend: skillLevels.filter(skill =>
-      ['Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'Java'].includes(skill.name)
-    ),
-    tools: skillLevels.filter(skill =>
-      ['Git'].includes(skill.name)
-    )
-  };
-  const conicColors = {
-    '0%': '#87d068',
-    '50%': '#ffe58f',
-    '100%': '#ffccc7',
-  };
-
-  const twoColors = {
-    from: '#108ee9',
-    to: '#87d068',
-  };
+  const skillCategories = {
+    frontend: {
+      icon: Code,
+      title: "Frontend",
+      skills: [
+        { name: "React.js", level: 90, icon: "⚛️" },
+        { name: "Next.js", level: 85, icon: "🔺" },
+        { name: "TypeScript", level: 80, icon: "📘" },
+        { name: "Tailwind CSS", level: 92, icon: "🎨" },
+        { name: "JavaScript", level: 88, icon: "🟨" },
+        { name: "HTML/CSS", level: 95, icon: "🌐" },
+      ],
+    },
+    backend: {
+      icon: Server,
+      title: "Backend",
+      skills: [
+        { name: "Node.js", level: 85, icon: "🟢" },
+        { name: "Express.js", level: 80, icon: "🚀" },
+        { name: "Python", level: 75, icon: "🐍" },
+        { name: "Java", level: 65, icon: "☕" },
+        { name: "REST APIs", level: 88, icon: "🔗" },
+        { name: "GraphQL", level: 70, icon: "📊" },
+      ],
+    },
+    database: {
+      icon: Database,
+      title: "Database",
+      skills: [
+        { name: "MongoDB", level: 85, icon: "🍃" },
+        { name: "PostgreSQL", level: 75, icon: "🐘" },
+        { name: "MySQL", level: 70, icon: "🗄️" },
+        { name: "Redis", level: 65, icon: "🔴" },
+        { name: "Mongoose", level: 80, icon: "📦" },
+        { name: "Prisma", level: 70, icon: "⚡" },
+      ],
+    },
+    tools: {
+      icon: Palette,
+      title: "Tools & Design",
+      skills: [
+        { name: "Git/GitHub", level: 90, icon: "🐙" },
+        { name: "Figma", level: 85, icon: "🎨" },
+        { name: "Docker", level: 70, icon: "🐳" },
+        { name: "AWS", level: 65, icon: "☁️" },
+        { name: "Vercel", level: 88, icon: "▲" },
+        { name: "VS Code", level: 95, icon: "💻" },
+      ],
+    },
+  }
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (skillsRef.current && !animated) {
-        const top = skillsRef.current.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-          setAnimated(true);
-        }
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [animated]);
-  const carouselRef = useRef(null);
+    const timer = setTimeout(() => setAnimated(true), 500)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
-    <div
-      className="w-11/12 mx-auto py-16 px-4 relative overflow-hidden mt-5"
-      ref={skillsRef}
-    >
-      <div className="absolute inset-0 z-0 opacity-20">
-        <Carousel
-          autoplay
-          dots={{ className: 'custom-carousel-dots' }}
-          effect="fade"
-          ref={carouselRef}
+    <section id="skills" className="py-20">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          {backgroundImages.map((bg, index) => (
-            <div key={index} className="h-full w-full">
-              <img
-                src={bg}
-                alt={`Background ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </Carousel>
-      </div>
-      <div className="relative z-10 container mx-auto px-4-">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-blue-500">
-          Skills & Technologies
-        </h2>
-        <div className="flex justify-center mb-12 w-11/12 mx-auto">
-          <div className="inline-flex rounded-lg bg-gray-100 p-1">
-            <button
-              onClick={() => setActiveTab('frontend')}
-              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'frontend' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-            >
-              Frontend
-            </button>
-            <button
-              onClick={() => setActiveTab('backend')}
-              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'backend' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-            >
-              Backend
-            </button>
-            <button
-              onClick={() => setActiveTab('tools')}
-              className={`px-6 py-2 rounded-md font-medium transition-all ${activeTab === 'tools' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-            >
-              Tools
-            </button>
-          </div>
-        </div>
-        <div className=''>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 ">
-            {filteredSkills[activeTab].map((skill, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center p-6 bg-white bg-opacity-90 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            Skills & <span className="text-primary">Technologies</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            A comprehensive overview of my technical expertise and proficiency levels
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-4 mb-12"
+        >
+          {Object.entries(skillCategories).map(([key, category]) => {
+            const Icon = category.icon
+            return (
+              <button
+                key={key}
+                onClick={() => setActiveCategory(key)}
+                className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                  activeCategory === key
+                    ? "bg-primary text-primary-foreground shadow-lg scale-105"
+                    : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
+                }`}
               >
-                <div className="relative group">
-                  <img
-                    src={skill.img}
-                    alt={skill.name}
-                    className="w-20 h-20 object-contain mb-4 transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="bg-black bg-opacity-70 text-white text-sm px-2 py-1 rounded">
-                      {skill.level}%
-                    </span>
+                <Icon size={18} />
+                <span>{category.title}</span>
+              </button>
+            )
+          })}
+        </motion.div>
+
+        <motion.div
+          key={activeCategory}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {skillCategories[activeCategory].skills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="h-full hover:shadow-lg transition-all duration-300 border-0 bg-background/50 backdrop-blur-sm group hover:scale-105">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">{skill.icon}</span>
+                      <h3 className="font-semibold text-lg">{skill.name}</h3>
+                    </div>
+                    <span className="text-sm font-medium text-primary">{skill.level}%</span>
                   </div>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">{skill.name}</h3>
-                <div className="w-full">
-                  <Progress
-                    percent={animated ? skill.level : 0}
-                    strokeColor={skill.level > 80 ? twoColors : conicColors}
-                    strokeWidth={10}
-                    showInfo={false}
-                    className="skill-progress"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                  <Progress value={animated ? skill.level : 0} className="h-2" />
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-4 gap-8 mt-16"
+        >
+          {[
+            { number: "2.5+", label: "Years Experience" },
+            { number: "20+", label: "Projects Completed" },
+            { number: "15+", label: "Technologies" },
+            { number: "100%", label: "Client Satisfaction" },
+          ].map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
+              <div className="text-muted-foreground font-medium">{stat.label}</div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-    </div>
-  );
-};
-export default Skills;
+    </section>
+  )
+}
+
+export default Skills
