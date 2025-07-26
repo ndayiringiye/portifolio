@@ -1,26 +1,31 @@
-import { Routes, Route } from "react-router";
-import Home from './Component/Home';
-import Contact from './Pages/Contact';
-import Layout from "./Pages/Layout";
-import { useState } from "react";
-import { globalModelContext } from "./contents/GlobalModelContext";
-import Projects from "./Pages/Projects";
+"use client"
 
-const App = () => {
-  const [models, setModels] = useState("light");
+import { ThemeProvider } from "./Component/theme-provider"
+import Header from "./Component/Head"
+import Hero from "./Component/Home"
+import About from "./Pages/AboutuS"
+import Skills from "./Component/Technology"
+import Projects from "./Pages/ProjectsSection"
+import Testimonials from "./Component/Communities"
+import Contact from "./Pages/Contact"
+import Footer from "./Component/Footer"
+
+export default function Home() {
   return (
-    <globalModelContext.Provider value={{ models, setModels }}>
-      <div className={models === "light" ? "light" : "dark"}>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/project" element={<Projects />} />
-          </Route>
-        </Routes>
+    <ThemeProvider>
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+        <Header />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Testimonials />
+          <Contact />
+        </main>
+        <Footer />
       </div>
-    </globalModelContext.Provider>
-  );
-};
-
-export default App;
+    </ThemeProvider>
+  )
+  
+}

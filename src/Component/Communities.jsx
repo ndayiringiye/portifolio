@@ -1,53 +1,146 @@
-import CountUp from "react-countup";
+"use client"
 
-const stats = [
-  {
-    count: 2,
-    suffix: "+",
-    description:
-      "Websites I developed independently to support clients in their daily operations.",
-  },
-  {
-    count: 4,
-    suffix: "+",
-    description:
-      "Team projects I contributed to, helping clients efficiently deliver their products.",
-  },
-  {
-    count: 7,
-    suffix: "+",
-    description:
-      "Collaborative UI design projects that enhanced user experience and built client trust.",
-  },
-];
+import React, { useState } from "react"
+import { motion } from "framer-motion"
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
 
-const Communities = () => {
+const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const testimonials = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      role: "Product Manager",
+      company: "TechCorp Inc.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+      text: "David's work on our e-commerce platform exceeded all expectations. His attention to detail and technical expertise helped us launch ahead of schedule. The user interface he created is both beautiful and highly functional.",
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      role: "CTO",
+      company: "StartupXYZ",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+      text: "Working with David was a game-changer for our startup. He delivered a robust full-stack solution that scaled perfectly with our growth. His communication throughout the project was exceptional.",
+    },
+    {
+      id: 3,
+      name: "Emily Rodriguez",
+      role: "Design Director",
+      company: "Creative Agency",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+      text: "David has an incredible eye for design and the technical skills to bring any vision to life. Our collaboration on the medical management system resulted in an intuitive and powerful application.",
+    },
+    {
+      id: 4,
+      name: "James Wilson",
+      role: "Founder",
+      company: "EduTech Solutions",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+      text: "The educational platform David built for us has transformed how we deliver online courses. His understanding of both frontend and backend technologies made the entire process seamless.",
+    },
+  ]
+
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
+
   return (
-    <div className="w-11/12 mx-auto py-10">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">Community Impact</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {stats.map((stat, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center text-center p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 bg-white dark:bg-gray-800"
-          >
-            <div className="inline-flex items-baseline text-blue-500 font-extrabold text-6xl md:text-7xl">
-              <CountUp
-                end={stat.count}
-                duration={2}
-                enableScrollSpy
-                scrollSpyDelay={300}
-              />
-              <span className="ml-1">{stat.suffix}</span>
-            </div>
-            <p className="mt-4 text-gray-600 dark:text-gray-300 text-base font-medium leading-relaxed">
-              {stat.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+    <section id="testimonials" className="py-20">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            Client <span className="text-primary">Testimonials</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">What my clients say about working with me</p>
+        </motion.div>
 
-export default Communities;
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="rounded-lg border border-gray-200 bg-white/50 backdrop-blur-sm shadow-xl">
+              <div className="p-8 lg:p-12">
+                <div className="flex items-center justify-center mb-8">
+                  <Quote className="w-12 h-12 text-blue-500/30" />
+                </div>
+
+                <blockquote className="text-xl lg:text-2xl text-center mb-8 leading-relaxed text-gray-600 italic">
+                  "{testimonials[currentIndex].text}"
+                </blockquote>
+
+                <div className="flex items-center justify-center mb-6">
+                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-center space-x-4">
+                  <img
+                    src={testimonials[currentIndex].image || "/placeholder.svg"}
+                    alt={testimonials[currentIndex].name}
+                    className="w-16 h-16 rounded-full object-cover border-2 border-blue-500/20"
+                  />
+                  <div className="text-center">
+                    <h4 className="font-bold text-lg">{testimonials[currentIndex].name}</h4>
+                    <p className="text-blue-500 font-medium">{testimonials[currentIndex].role}</p>
+                    <p className="text-gray-600 text-sm">{testimonials[currentIndex].company}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="flex items-center justify-center space-x-4 mt-8">
+            <button
+              onClick={prevTestimonial}
+              className="w-10 h-10 rounded-full border border-blue-500/20 hover:bg-blue-500 hover:text-white bg-transparent transition-colors duration-200 flex items-center justify-center"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            <div className="flex space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                    index === currentIndex ? "bg-blue-500 scale-125" : "bg-gray-300 hover:bg-gray-500"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={nextTestimonial}
+              className="w-10 h-10 rounded-full border border-blue-500/20 hover:bg-blue-500 hover:text-white bg-transparent transition-colors duration-200 flex items-center justify-center"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Testimonials

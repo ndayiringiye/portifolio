@@ -1,89 +1,116 @@
-import { useState } from "react";
-import { IoMenuSharp } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { IoMdCloseCircle } from "react-icons/io";
-import { motion, AnimatePresence } from "framer-motion"; 
+"use client"
 
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X, Sun, Moon, Home, User, Code, Briefcase, MessageCircle, Star } from "lucide-react"
+import { useTheme } from "./theme-provider"
 
-const Head = () => {
-  const [icons, setIcons] = useState(false)
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const { theme, toggleTheme } = useTheme()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const navItems = [
+    { name: "Home", href: "#home", icon: Home },
+    { name: "About", href: "#about", icon: User },
+    { name: "Skills", href: "#skills", icon: Code },
+    { name: "Projects", href: "#projects", icon: Briefcase },
+    { name: "Testimonials", href: "#testimonials", icon: Star },
+    { name: "Contact", href: "#contact", icon: MessageCircle },
+  ]
+
   return (
-    <div className="relative z-50 ">
-      <div className="fixed top-0 right-0 left-0 z-50">
-        <h1 className="text-white font-serif uppercase border border-gray-50 font-bold text-3xl text-center py-3 bg-blue-400">
-          Portfolio
-        </h1>
-        <div className="bg-blue-400">
-          <nav className="flex justify-between w-11/12 mx-auto bg-blue-400 px-4 py-3">
-            <div className="logo">
-              <Link to="/" className="text-white font-bold capitalize text-3xl font-serif">
-                dav<span className="text-black font-bold">id</span>
-              </Link>
-            </div>
-            <div className="hidden sm:flex gap-8 font-serif uppercase">
-              <Link className="hover:text-white hover:underline underline-offset-2" to="/">Home</Link>
-              <Link className="hover:text-white hover:underline underline-offset-2" to="/contact">Contact</Link>
-              <Link className="hover:text-white hover:underline underline-offset-2" to="/about">About Me</Link>
-              <Link className="hover:text-white hover:underline underline-offset-2" to="/project">Projects</Link>
-            </div>
-            <div className="z-10 sm:hidden relative">
-              <IoMenuSharp onClick={() => setIcons(!icons)} className="text-3xl text-black cursor-pointer iphone:text-3xl ipad:text-5xl ipad:front-bold  ipad:px-2 flex sm:hidden" />
-              {icons && (
-               <AnimatePresence>
-               {icons && (
-                 <motion.div
-                   initial={{ x: "100%", opacity: 0 }}
-                   animate={{ x: 0, opacity: 1 }}
-                   exit={{ x: "100%", opacity: 0 }}
-                   transition={{ duration: 0.4, ease: "easeInOut" }}
-                   className="absolute right-0 top-10 bg-blue-400 w-40 py-2 rounded-md shadow-md text-white z-50"
-                 >
-                   <div className="flex justify-end px-2">
-                     <IoMdCloseCircle
-                       onClick={() => setIcons(false)}
-                       className="text-2xl cursor-pointer hover:text-gray-200 transition"
-                     />
-                   </div>
-                   <div className="flex flex-col items-center gap-2 py-2 font-bold cursor-pointer">
-                     <Link
-                       className="hover:text-gray-200 hover:underline"
-                       to="/"
-                       onClick={() => setIcons(false)}
-                     >
-                       Home
-                     </Link>
-                     <Link
-                       className="hover:text-gray-200 hover:underline"
-                       to="/contact"
-                       onClick={() => setIcons(false)}
-                     >
-                       Contact
-                     </Link>
-                     <Link
-                       className="hover:text-gray-200 hover:underline"
-                       to="/about"
-                       onClick={() => setIcons(false)}
-                     >
-                       About Me
-                     </Link>
-                     <Link
-                       className="hover:text-gray-200 hover:underline"
-                       to="/project"
-                       onClick={() => setIcons(false)}
-                     >
-                       Project
-                     </Link>
-                   </div>
-                 </motion.div>
-               )}
-             </AnimatePresence>
-              )}
-            </div>
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent"
+          >
+            David<span className="text-foreground">.</span>
+          </motion.div>
+
+          <nav className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <motion.a
+                key={item.name}
+                href={item.href}
+                whileHover={{ y: -2 }}
+                className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
+              >
+                {item.name}
+              </motion.a>
+            ))}
           </nav>
+
+          <div className="flex items-center space-x-4">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+            >
+              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </motion.button>
+          </div>
         </div>
+
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden mt-4 py-4 border-t border-border"
+            >
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item, index) => {
+                  const Icon = item.icon
+                  return (
+                    <motion.a
+                      key={item.name}
+                      href={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center space-x-3 text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
+                    >
+                      <Icon size={18} />
+                      <span>{item.name}</span>
+                    </motion.a>
+                  )
+                })}
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
-  );
+    </motion.header>
+  )
 }
 
-export default Head
+export default Header
