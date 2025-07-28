@@ -35,7 +35,7 @@ const Header = () => {
         isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="w-11/12 mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -77,7 +77,6 @@ const Header = () => {
             </motion.button>
           </div>
         </div>
-
         <AnimatePresence>
           {isMenuOpen && (
             <motion.nav
@@ -86,7 +85,7 @@ const Header = () => {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden mt-4 py-4 border-t border-border"
             >
-              <div className="flex flex-col space-y-4">
+              <div className="flex flex-col md:flex-row space-y-4 bg-background/50 backdrop-blur-sm rounded-lg p-4">
                 {navItems.map((item, index) => {
                   const Icon = item.icon
                   return (

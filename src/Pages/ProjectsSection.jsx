@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink, Github, Globe, ShoppingCart, Calendar, Cloud, Smartphone } from "lucide-react"
-
+import ecommerceImage from "../../public/images/ecommerce.png";
 const Projects = () => {
   const [filter, setFilter] = useState("all")
 
@@ -13,7 +13,7 @@ const Projects = () => {
       title: "E-Commerce Platform",
       description:
         "A full-stack e-commerce solution with modern UI, payment integration, and admin dashboard. Built with React, Node.js, and MongoDB.",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "../../public/images/ecommerce.png",
       technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
       liveUrl: "https://ecommerce-demo.com",
       githubUrl: "https://github.com/user/ecommerce",
@@ -25,7 +25,7 @@ const Projects = () => {
       title: "E-Medical Management System",
       description:
         "A comprehensive medical management system with patient records, appointment scheduling, and real-time updates.",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "../../public/images/medical.png",
       technologies: ["React", "TypeScript", "Firebase", "Framer Motion", "Node.js", "Tailwind CSS"],
       liveUrl: "https://e-medical-reports-fr.netlify.app/",
       githubUrl: "https://github.com/ndayiringiye/E_Medical_Reports",
@@ -37,7 +37,7 @@ const Projects = () => {
       title: "Alight Coding School",
       description:
         "A modern educational platform with course management, student tracking, and interactive learning features.",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "../../public/images/alight.png",
       technologies: ["React", "Chart.js", "Node.js", "Express", "CSS Grid"],
       liveUrl: "https://alight-coding-school-website-frontend.onrender.com/",
       githubUrl: "https://github.com/eugide/alight-coding-school-website",
@@ -49,9 +49,9 @@ const Projects = () => {
       title: "Mobile Banking App",
       description:
         "A secure mobile banking interface with biometric authentication, transaction history, and budget tracking features.",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "../../public/images/bank.png",
       technologies: ["React Native", "Redux", "Node.js", "Express", "JWT"],
-      liveUrl: "https://banking-app.com",
+      liveUrl: "https://banking-ap.comp",
       githubUrl: "https://github.com/user/banking",
       icon: Smartphone,
       category: "mobile",
@@ -68,8 +68,8 @@ const Projects = () => {
   const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter)
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="projects" className="py-20 bg-background">
+      <div className="w-11/12 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -117,7 +117,7 @@ const Projects = () => {
                 viewport={{ once: true }}
                 layout
               >
-                <div className="group overflow-hidden rounded-lg bg-white/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 border border-gray-200">
+                <div className="group overflow-hidden rounded-lg bg-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500 border border-border">
                   <div className="relative overflow-hidden">
                     <img
                       src={project.image || "/placeholder.svg"}
@@ -128,7 +128,7 @@ const Projects = () => {
                     <div className="absolute top-4 right-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                       <Icon className="w-6 h-6 text-white" />
                     </div>
-                    <span className="absolute top-4 left-4 bg-white/90 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="absolute top-4 left-4 bg-card/90 text-foreground px-3 py-1 rounded-full text-sm font-medium">
                       {project.category}
                     </span>
                   </div>
@@ -137,7 +137,7 @@ const Projects = () => {
                     <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-500 transition-colors duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+                    <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
 
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.technologies.map((tech) => (

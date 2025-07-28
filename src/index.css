@@ -332,8 +332,11 @@ html {
   outline-offset: 2px;
 }
 
-/* Selection styles */
 ::selection {
   background-color: hsl(var(--primary) / 0.2);
   color: hsl(var(--foreground));
 }
+html, body {
+  overflow-x: hidden;
+}
+
