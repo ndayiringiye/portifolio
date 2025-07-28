@@ -13,7 +13,7 @@ const Testimonials = () => {
       name: "Sarah Johnson",
       role: "Product Manager",
       company: "TechCorp Inc.",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "../../public/images/sala.png",
       rating: 5,
       text: "David's work on our e-commerce platform exceeded all expectations. His attention to detail and technical expertise helped us launch ahead of schedule. The user interface he created is both beautiful and highly functional.",
     },
@@ -22,7 +22,7 @@ const Testimonials = () => {
       name: "Michael Chen",
       role: "CTO",
       company: "StartupXYZ",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "../../public/images/chen.png",
       rating: 5,
       text: "Working with David was a game-changer for our startup. He delivered a robust full-stack solution that scaled perfectly with our growth. His communication throughout the project was exceptional.",
     },
@@ -31,7 +31,7 @@ const Testimonials = () => {
       name: "Emily Rodriguez",
       role: "Design Director",
       company: "Creative Agency",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "../../public/images/emily.png",
       rating: 5,
       text: "David has an incredible eye for design and the technical skills to bring any vision to life. Our collaboration on the medical management system resulted in an intuitive and powerful application.",
     },
@@ -40,7 +40,7 @@ const Testimonials = () => {
       name: "James Wilson",
       role: "Founder",
       company: "EduTech Solutions",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "../../public/images/wilson.png",
       rating: 5,
       text: "The educational platform David built for us has transformed how we deliver online courses. His understanding of both frontend and backend technologies made the entire process seamless.",
     },
@@ -56,7 +56,7 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="py-20">
-      <div className="container mx-auto px-4">
+      <div className="w-11/12 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -4,11 +4,18 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Download, ArrowRight, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
+import profile from "../../public/images/profile.png";
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleDownloadCV = async () => {
+    const link = document.createElement("a")
+    link.href = "public/DavidNdayiringiyeResume_fullstack.pdf" 
+    link.download = "David_Ndayiringiye_CV.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
@@ -17,9 +24,10 @@ const Hero = () => {
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/ndayiringiye", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/ndayiringiye-david-2aa403326/", label: "LinkedIn" },
     { icon: Mail, href: "mailto:ndayiringiyedavid394@gmail.com", label: "Email" },
   ]
+ 
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -27,7 +35,7 @@ const Hero = () => {
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
+      <div className="w-11/12 mx-auto px-4 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -140,7 +148,7 @@ const Hero = () => {
               />
               <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-background shadow-2xl">
                 <img
-                  src="../../public/images/profile.png"
+                  src={profile}
                   alt="David Ndayiringiye"
                   className="w-full h-full object-cover"
                 />

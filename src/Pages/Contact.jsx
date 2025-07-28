@@ -68,40 +68,42 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-12 fold:py-16 sm:py-20 bg-muted/30">
+      <div className="w-11/12 mx-auto px-2 fold:px-3 sm:px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 fold:mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-2xl fold:text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 fold:mb-6">
             Get In <span className="text-primary">Touch</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base fold:text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-2 fold:px-0">
             Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 fold:gap-10 sm:gap-12 max-w-6xl mx-auto">
+          {/* Contact Info Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 fold:space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6">Let's start a conversation</h3>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              <h3 className="text-xl fold:text-2xl font-bold mb-4 fold:mb-6">Let's start a conversation</h3>
+              <p className="text-muted-foreground text-sm fold:text-base sm:text-lg leading-relaxed mb-6 fold:mb-8">
                 I'm always interested in new opportunities and exciting projects. Whether you have a question or just
                 want to say hi, I'll try my best to get back to you!
               </p>
             </div>
 
-            <div className="space-y-6">
+            {/* Contact Cards */}
+            <div className="space-y-4 fold:space-y-6">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon
                 return (
@@ -113,16 +115,16 @@ const Contact = () => {
                     viewport={{ once: true }}
                   >
                     <Card className="border-0 bg-background/50 backdrop-blur-sm hover:shadow-lg transition-shadow duration-300">
-                      <CardContent className="p-6">
-                        <div className="flex items-center space-x-4">
-                          <div className="p-3 bg-primary/10 rounded-lg">
-                            <Icon className="w-6 h-6 text-primary" />
+                      <CardContent className="p-4 fold:p-5 sm:p-6">
+                        <div className="flex items-center space-x-3 fold:space-x-4">
+                          <div className="p-2 fold:p-3 bg-primary/10 rounded-lg flex-shrink-0">
+                            <Icon className="w-4 h-4 fold:w-5 fold:h-5 sm:w-6 sm:h-6 text-primary" />
                           </div>
-                          <div>
-                            <h4 className="font-semibold text-lg">{info.title}</h4>
+                          <div className="min-w-0 flex-1">
+                            <h4 className="font-semibold text-sm fold:text-base sm:text-lg">{info.title}</h4>
                             <a
                               href={info.href}
-                              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                              className="text-xs fold:text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors duration-200 break-all"
                             >
                               {info.value}
                             </a>
@@ -135,9 +137,10 @@ const Contact = () => {
               })}
             </div>
 
-            <div className="pt-8">
-              <h4 className="font-semibold text-lg mb-4">Follow me on social media</h4>
-              <div className="flex space-x-4">
+            {/* Social Links */}
+            <div className="pt-6 fold:pt-8">
+              <h4 className="font-semibold text-sm fold:text-base sm:text-lg mb-3 fold:mb-4">Follow me on social media</h4>
+              <div className="flex space-x-3 fold:space-x-4">
                 {socialLinks.map((social) => {
                   const Icon = social.icon
                   return (
@@ -148,9 +151,9 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-3 bg-background/50 backdrop-blur-sm rounded-full hover:bg-primary hover:text-primary-foreground transition-colors duration-200 border border-border"
+                      className="p-2 fold:p-3 bg-background/50 backdrop-blur-sm rounded-full hover:bg-primary hover:text-primary-foreground transition-colors duration-200 border border-border"
                     >
-                      <Icon size={20} />
+                      <Icon size={16} className="fold:w-5 fold:h-5" />
                     </motion.a>
                   )
                 })}
@@ -165,11 +168,11 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <Card className="border-0 bg-background/50 backdrop-blur-sm shadow-xl">
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+              <CardContent className="p-4 fold:p-6 sm:p-8">
+                <form onSubmit={handleSubmit} className="space-y-4 fold:space-y-5 sm:space-y-6">
+                  <div className="grid grid-cols-1 iphone:grid-cols-2 gap-4 fold:gap-5 sm:gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      <label htmlFor="name" className="block text-xs fold:text-sm font-medium mb-2">
                         Name *
                       </label>
                       <Input
@@ -178,12 +181,12 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="bg-background/50 border-border focus:border-primary"
+                        className="bg-background/50 border-border focus:border-primary text-sm fold:text-base h-10 fold:h-11"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      <label htmlFor="email" className="block text-xs fold:text-sm font-medium mb-2">
                         Email *
                       </label>
                       <Input
@@ -193,14 +196,13 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="bg-background/50 border-border focus:border-primary"
+                        className="bg-background/50 border-border focus:border-primary text-sm fold:text-base h-10 fold:h-11"
                         placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
-
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                    <label htmlFor="subject" className="block text-xs fold:text-sm font-medium mb-2">
                       Subject *
                     </label>
                     <Input
@@ -209,13 +211,12 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="bg-background/50 border-border focus:border-primary"
+                      className="bg-background/50 border-border focus:border-primary text-sm fold:text-base h-10 fold:h-11"
                       placeholder="What's this about?"
                     />
                   </div>
-
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                    <label htmlFor="message" className="block text-xs fold:text-sm font-medium mb-2">
                       Message *
                     </label>
                     <Textarea
@@ -224,25 +225,24 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows={6}
-                      className="bg-background/50 border-border focus:border-primary resize-none"
+                      rows={4}
+                      className="bg-background/50 border-border focus:border-primary resize-none text-sm fold:text-base min-h-[100px] fold:min-h-[120px] sm:min-h-[150px]"
                       placeholder="Tell me about your project..."
                     />
                   </div>
-
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 text-lg font-semibold"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 fold:py-4 sm:py-6 text-sm fold:text-base sm:text-lg font-semibold h-auto"
                   >
                     {isSubmitting ? (
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                        className="w-4 h-4 fold:w-5 fold:h-5 border-2 border-white border-t-transparent rounded-full mr-2"
                       />
                     ) : (
-                      <Send className="w-5 h-5 mr-2" />
+                      <Send className="w-4 h-4 fold:w-5 fold:h-5 mr-2" />
                     )}
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
