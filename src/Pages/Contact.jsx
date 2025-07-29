@@ -63,7 +63,7 @@ const Contact = () => {
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/ndayiringiye", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/ndayiringiye-david-2aa403326/", label: "LinkedIn" },
     { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
   ]
 
@@ -86,7 +86,6 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 fold:gap-10 sm:gap-12 max-w-6xl mx-auto">
-          {/* Contact Info Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -101,8 +100,6 @@ const Contact = () => {
                 want to say hi, I'll try my best to get back to you!
               </p>
             </div>
-
-            {/* Contact Cards */}
             <div className="space-y-4 fold:space-y-6">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon
@@ -136,8 +133,6 @@ const Contact = () => {
                 )
               })}
             </div>
-
-            {/* Social Links */}
             <div className="pt-6 fold:pt-8">
               <h4 className="font-semibold text-sm fold:text-base sm:text-lg mb-3 fold:mb-4">Follow me on social media</h4>
               <div className="flex space-x-3 fold:space-x-4">

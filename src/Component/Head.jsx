@@ -1,14 +1,11 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Sun, Moon, Home, User, Code, Briefcase, MessageCircle, Star } from "lucide-react"
-import { useTheme } from "./theme-provider"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { theme, toggleTheme } = useTheme()
+  const [theme, setTheme] = useState("light")
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +14,30 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === "light" ? "dark" : "light")
+  }
+
+  const handleNavClick = (href, event) => {
+    event.preventDefault()
+    setIsMenuOpen(false)
+    
+    setTimeout(() => {
+      const targetId = href.replace('#', '')
+      const targetElement = document.getElementById(targetId)
+      
+      if (targetElement) {
+        const headerHeight = 80
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        })
+      }
+    }, 100)
+  }
 
   const navItems = [
     { name: "Home", href: "#home", icon: Home },
@@ -50,7 +71,8 @@ const Header = () => {
                 key={item.name}
                 href={item.href}
                 whileHover={{ y: -2 }}
-                className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
+                onClick={(e) => handleNavClick(item.href, e)}
+                className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium cursor-pointer"
               >
                 {item.name}
               </motion.a>
@@ -77,6 +99,7 @@ const Header = () => {
             </motion.button>
           </div>
         </div>
+
         <AnimatePresence>
           {isMenuOpen && (
             <motion.nav
@@ -85,7 +108,7 @@ const Header = () => {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden mt-4 py-4 border-t border-border"
             >
-              <div className="flex flex-col md:flex-row space-y-4 bg-background/50 backdrop-blur-sm rounded-lg p-4">
+              <div className="flex flex-col space-y-4 bg-background/90 backdrop-blur-sm rounded-lg p-4">
                 {navItems.map((item, index) => {
                   const Icon = item.icon
                   return (
@@ -95,8 +118,8 @@ const Header = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center space-x-3 text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
+                      onClick={(e) => handleNavClick(item.href, e)}
+                      className="flex items-center space-x-3 text-muted-foreground hover:text-primary transition-colors duration-200 font-medium py-2 px-3 rounded-md hover:bg-muted/20 cursor-pointer"
                     >
                       <Icon size={18} />
                       <span>{item.name}</span>

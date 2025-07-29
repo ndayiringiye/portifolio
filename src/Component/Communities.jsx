@@ -1,8 +1,11 @@
-"use client"
-
 import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
+
+import salaImage from "../../public/images/sala.png"
+import chenImage from "../../public/images/chen.png"
+import emilyImage from "../../public/images/emily.png"
+import wilsonImage from "../../public/images/wilson.png"
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -13,7 +16,7 @@ const Testimonials = () => {
       name: "Sarah Johnson",
       role: "Product Manager",
       company: "TechCorp Inc.",
-      image: "../../public/images/sala.png",
+      image: salaImage,
       rating: 5,
       text: "David's work on our e-commerce platform exceeded all expectations. His attention to detail and technical expertise helped us launch ahead of schedule. The user interface he created is both beautiful and highly functional.",
     },
@@ -22,7 +25,7 @@ const Testimonials = () => {
       name: "Michael Chen",
       role: "CTO",
       company: "StartupXYZ",
-      image: "../../public/images/chen.png",
+      image: chenImage,
       rating: 5,
       text: "Working with David was a game-changer for our startup. He delivered a robust full-stack solution that scaled perfectly with our growth. His communication throughout the project was exceptional.",
     },
@@ -31,7 +34,7 @@ const Testimonials = () => {
       name: "Emily Rodriguez",
       role: "Design Director",
       company: "Creative Agency",
-      image: "../../public/images/emily.png",
+      image: emilyImage,
       rating: 5,
       text: "David has an incredible eye for design and the technical skills to bring any vision to life. Our collaboration on the medical management system resulted in an intuitive and powerful application.",
     },
@@ -40,7 +43,7 @@ const Testimonials = () => {
       name: "James Wilson",
       role: "Founder",
       company: "EduTech Solutions",
-      image: "../../public/images/wilson.png",
+      image: wilsonImage,
       rating: 5,
       text: "The educational platform David built for us has transformed how we deliver online courses. His understanding of both frontend and backend technologies made the entire process seamless.",
     },
@@ -96,9 +99,10 @@ const Testimonials = () => {
 
                 <div className="flex items-center justify-center space-x-4">
                   <img
-                    src={testimonials[currentIndex].image || "/placeholder.svg"}
+                    src={testimonials[currentIndex].image}
                     alt={testimonials[currentIndex].name}
                     className="w-16 h-16 rounded-full object-cover border-2 border-blue-500/20"
+                    loading="lazy"
                   />
                   <div className="text-center">
                     <h4 className="font-bold text-lg">{testimonials[currentIndex].name}</h4>
