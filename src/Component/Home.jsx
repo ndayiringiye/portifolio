@@ -1,10 +1,10 @@
-"use client"
-
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Download, ArrowRight, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import profile from "../../public/images/profile.png";
+
+import profile from "../../public/images/profile.png"
+
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(false)
 
@@ -22,12 +22,21 @@ const Hero = () => {
     }, 2000)
   }
 
+  const handleViewProjects = () => {
+    const projectsSection = document.getElementById('projects')
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   const socialLinks = [
     { icon: Github, href: "https://github.com/ndayiringiye", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/ndayiringiye-david-2aa403326/", label: "LinkedIn" },
     { icon: Mail, href: "mailto:ndayiringiyedavid394@gmail.com", label: "Email" },
   ]
- 
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -94,6 +103,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full bg-transparent"
+                onClick={handleViewProjects}
               >
                 View Projects
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -151,6 +161,7 @@ const Hero = () => {
                   src={profile}
                   alt="David Ndayiringiye"
                   className="w-full h-full object-cover"
+                  loading="eager"
                 />
               </div>
               <motion.div
