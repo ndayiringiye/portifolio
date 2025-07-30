@@ -8,6 +8,20 @@ const Header = () => {
   const [theme, setTheme] = useState("light")
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light'
+    setTheme(savedTheme)
+    applyTheme(savedTheme)
+  }, [])
+
+  const applyTheme = (newTheme) => {
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
@@ -16,7 +30,10 @@ const Header = () => {
   }, [])
 
   const toggleTheme = () => {
-    setTheme(prev => prev === "light" ? "dark" : "light")
+    const newTheme = theme === "light" ? "dark" : "light"
+    setTheme(newTheme)
+    applyTheme(newTheme)
+    localStorage.setItem('theme', newTheme); 
   }
 
   const handleNavClick = (href, event) => {
@@ -85,6 +102,7 @@ const Header = () => {
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
               className="p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
             >
               {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
             </motion.button>

@@ -1,16 +1,33 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react"
+import emailjs from '@emailjs/browser'
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  Twitter,
+  User,
+  MessageSquare,
+  Sparkles,
+  Loader2,
+  CheckCircle,
+  AlertCircle
+} from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-
+         
 const Contact = () => {
+  const form = useRef()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,18 +36,49 @@ const Contact = () => {
   })
   const { toast } = useToast()
 
+  const EMAIL_SERVICE_ID = "service_ioo88l3"
+  const EMAIL_TEMPLATE_ID = "template_xof4qjg"
+  const EMAIL_PUBLIC_KEY = "wkrdCbu66hKdjpCA2"
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      const result = await emailjs.sendForm(
+        EMAIL_SERVICE_ID,
+        EMAIL_TEMPLATE_ID,
+        form.current,
+        EMAIL_PUBLIC_KEY
+      )
+
+      console.log('Email sent successfully:', result.text)
+
+      setShowSuccess(true)
+
       toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+        title: "✅ Message Sent Successfully!",
+        description: "Thank you for reaching out! I'll get back to you within 24 hours.",
+        variant: "default",
       })
+
       setFormData({ name: "", email: "", subject: "", message: "" })
-    }, 2000)
+
+      setTimeout(() => {
+        setShowSuccess(false)
+      }, 3000)
+
+    } catch (error) {
+      console.error('Failed to send email:', error)
+
+      toast({
+        title: "❌ Failed to Send Message",
+        description: "Something went wrong. Please try again or contact me directly via email.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e) => {
@@ -162,88 +210,133 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="border-0 bg-background/50 backdrop-blur-sm shadow-xl">
-              <CardContent className="p-4 fold:p-6 sm:p-8">
-                <form onSubmit={handleSubmit} className="space-y-4 fold:space-y-5 sm:space-y-6">
-                  <div className="grid grid-cols-1 iphone:grid-cols-2 gap-4 fold:gap-5 sm:gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-xs fold:text-sm font-medium mb-2">
+            <div className="relative border-0 bg-background/50 backdrop-blur-sm shadow-xl rounded-xl p-4 fold:p-6 sm:p-8">
+              {showSuccess && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  className="absolute inset-0 bg-green-500/10 backdrop-blur-sm rounded-xl flex items-center justify-center z-10"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                    className="text-center"
+                  >
+                    <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold text-green-600 mb-2">Message Sent!</h3>
+                    <p className="text-green-600">I'll get back to you soon.</p>
+                  </motion.div>
+                </motion.div>
+              )}
+
+              <form ref={form} onSubmit={handleSubmit} className="space-y-4 fold:space-y-5 sm:space-y-6">
+                <div className="grid grid-cols-1 iphone:grid-cols-2 gap-4 fold:gap-5 sm:gap-6">
+                  <div className="group">
+                    <label htmlFor="name" className="block text-xs fold:text-sm font-medium mb-2 text-muted-foreground group-focus-within:text-primary transition-colors">
+                      <div className="flex items-center gap-2">
+                        <User className="w-3 h-3 fold:w-4 fold:h-4" />
                         Name *
-                      </label>
-                      <Input
+                      </div>
+                    </label>
+                    <div className="relative">
+                      <input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="bg-background/50 border-border focus:border-primary text-sm fold:text-base h-10 fold:h-11"
+                        className="w-full bg-background/50 border border-border rounded-lg px-4 py-3 fold:py-3.5 pl-10 fold:pl-11 text-sm fold:text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary hover:border-primary/60"
                         placeholder="Your name"
                       />
+                      <User className="absolute left-3 fold:left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 fold:w-4 fold:h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                     </div>
-                    <div>
-                      <label htmlFor="email" className="block text-xs fold:text-sm font-medium mb-2">
+                  </div>
+                  <div className="group">
+                    <label htmlFor="email" className="block text-xs fold:text-sm font-medium mb-2 text-muted-foreground group-focus-within:text-primary transition-colors">
+                      <div className="flex items-center gap-2">
+                        <Mail className="w-3 h-3 fold:w-4 fold:h-4" />
                         Email *
-                      </label>
-                      <Input
+                      </div>
+                    </label>
+                    <div className="relative">
+                      <input
                         id="email"
                         name="email"
-                        type="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="bg-background/50 border-border focus:border-primary text-sm fold:text-base h-10 fold:h-11"
+                        className="w-full bg-background/50 border border-border rounded-lg px-4 py-3 fold:py-3.5 pl-10 fold:pl-11 text-sm fold:text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary hover:border-primary/60"
                         placeholder="your.email@example.com"
                       />
+                      <Mail className="absolute left-3 fold:left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 fold:w-4 fold:h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                     </div>
                   </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-xs fold:text-sm font-medium mb-2">
+                </div>
+
+                <div className="group">
+                  <label htmlFor="subject" className="block text-xs fold:text-sm font-medium mb-2 text-muted-foreground group-focus-within:text-primary transition-colors">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-3 h-3 fold:w-4 fold:h-4" />
                       Subject *
-                    </label>
-                    <Input
+                    </div>
+                  </label>
+                  <div className="relative">
+                    <input
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      required
-                      className="bg-background/50 border-border focus:border-primary text-sm fold:text-base h-10 fold:h-11"
+                               required
+                      className="w-full bg-background/50 border border-border rounded-lg px-4 py-3 fold:py-3.5 pl-10 fold:pl-11 text-sm fold:text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary hover:border-primary/60"
                       placeholder="What's this about?"
                     />
+                    <Sparkles className="absolute left-3 fold:left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 fold:w-4 fold:h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                   </div>
-                  <div>
-                    <label htmlFor="message" className="block text-xs fold:text-sm font-medium mb-2">
+                </div>
+                <div className="group">
+                  <label htmlFor="message" className="block text-xs fold:text-sm font-medium mb-2 text-muted-foreground group-focus-within:text-primary transition-colors">
+                    <div className="flex items-center gap-2">
+                      <MessageSquare className="w-3 h-3 fold:w-4 fold:h-4" />
                       Message *
-                    </label>
-                    <Textarea
+                    </div>
+                  </label>
+                  <div className="relative">
+                    <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="bg-background/50 border-border focus:border-primary resize-none text-sm fold:text-base min-h-[100px] fold:min-h-[120px] sm:min-h-[150px]"
+                      className="w-full bg-background/50 border border-border rounded-lg px-4 py-3 fold:py-3.5 pl-10 fold:pl-11 text-sm fold:text-base min-h-[100px] fold:min-h-[120px] sm:min-h-[150px] resize-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary hover:border-primary/60"
                       placeholder="Tell me about your project..."
                     />
+                    <MessageSquare className="absolute left-3 fold:left-3.5 top-4 w-4 h-4 fold:w-4 fold:h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                   </div>
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 fold:py-4 sm:py-6 text-sm fold:text-base sm:text-lg font-semibold h-auto"
-                  >
-                    {isSubmitting ? (
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                        className="w-4 h-4 fold:w-5 fold:h-5 border-2 border-white border-t-transparent rounded-full mr-2"
-                      />
-                    ) : (
-                      <Send className="w-4 h-4 fold:w-5 fold:h-5 mr-2" />
-                    )}
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                </div>
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  className="w-full bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-primary-foreground py-3 fold:py-4 sm:py-6 text-sm fold:text-base sm:text-lg font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 fold:w-5 fold:h-5 animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 fold:w-5 fold:h-5" />
+                      <span>Send Message</span>
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            </div>
           </motion.div>
         </div>
       </div>
