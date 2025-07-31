@@ -98,11 +98,10 @@ const Projects = () => {
             <button
               key={category.id}
               onClick={() => setFilter(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                filter === category.id
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${filter === category.id
                   ? "bg-blue-500 text-white shadow-lg scale-105"
                   : "bg-white hover:bg-gray-100 text-gray-600 hover:text-gray-800 border border-gray-200"
-              }`}
+                }`}
             >
               {category.label}
             </button>
@@ -154,26 +153,28 @@ const Projects = () => {
                       ))}
                     </div>
 
-                    <div className="flex gap-4">
+                    <div className="flex  fold:flex-col gap-4">
                       <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-blue-500 hover:bg-blue-600 text-white flex-1 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center font-medium"
+                        className="bg-blue-500 hover:bg-blue-600 text-white w-full px-3 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center font-medium text-sm whitespace-nowrap"
                       >
-                        <Globe className="w-4 h-4 mr-2" />
-                        Live Demo
+                        <Globe className="w-4 h-4 mr-1 shrink-0" />
+                        <span className="hidden fold:inline sm:hidden">Demo</span>
+                        <span className="fold:hidden sm:inline">Live Demo</span>
                       </a>
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white flex-1 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center font-medium bg-transparent"
+                        className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white w-full px-3 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center font-medium text-sm whitespace-nowrap"
                       >
-                        <Github className="w-4 h-4 mr-2" />
+                        <Github className="w-4 h-4 mr-1 shrink-0" />
                         Code
                       </a>
                     </div>
+
                   </div>
                 </div>
               </motion.div>
