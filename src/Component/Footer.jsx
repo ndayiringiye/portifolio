@@ -19,6 +19,7 @@ const Footer = () => {
             <div className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
               David Ndayiringiye
             </div>
+            
             <p className="text-muted-foreground leading-relaxed">
               Full-Stack Developer passionate about creating innovative solutions and building meaningful digital
               experiences.

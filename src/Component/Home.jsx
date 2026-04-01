@@ -22,6 +22,7 @@ const Hero = () => {
     }, 2000)
   }
 
+  
   const handleViewProjects = () => {
     const projectsSection = document.getElementById('projects')
     if (projectsSection) {
